@@ -127,6 +127,9 @@ if($VerificaPago >= 1){
             case 9:
                 $Velocidad = '10M/15M';  
                 break;
+            case 10:
+                $Velocidad = '25M/50M';  
+                break;
             
         }
     }

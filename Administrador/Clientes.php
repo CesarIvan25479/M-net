@@ -205,6 +205,7 @@
                                                                <th>TELEFONO</th>
                                                                <th>T. SERVICIO</th>
                                                                <th>ZONA</th>
+                                                               <th>PRECIO</th>
                                                                <th>OBSERVACIONES</th>
                                                            </tr>
                                                        </thead>
@@ -223,7 +224,7 @@
                                                                <td><?php echo $Cliente['TIPO'];?></td>
                                                                <td><?php echo $Cliente['ZONA'];?></td>
                                                                <td><?php echo $Cliente['OBSERV'];?></td>
-                                                               
+                                                               <td><?php echo $Cliente['PRECIO']; ?></td>
                                                            </tr>
                                                            <?php }?>
                                                        </tbody>

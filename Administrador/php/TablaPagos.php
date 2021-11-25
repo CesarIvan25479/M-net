@@ -79,6 +79,8 @@ if($VerificaPago >= 1){
     $Username=$DatosRouter['Usuario'];
     $Pass=$DatosRouter['Pwd'];        
     $api_puerto=$DatosRouter['PuertoAPI'];
+
+    if($tipo == 'INA'){
     if($zona == 'SM' || $zona == 'SL' || $zona == 'GB' || $zona == 'SJAT' || $zona == 'SAN' || $zona == 'LES'){
      
         switch($DatosActivar['PRECIO']){
@@ -86,7 +88,7 @@ if($VerificaPago >= 1){
                 $Velocidad = '3M/6M';  
                 break;
             case 4:
-                $Velocidad = '3M/6M';  
+                $Velocidad = '5M/9M';  
                 break;
             case 1:
                 $Velocidad = '5M/10M';  
@@ -133,6 +135,22 @@ if($VerificaPago >= 1){
             
         }
     }
+}else if($tipo == 'IFO'){
+    switch($DatosActivar['PRECIO']){
+        case 4:
+            $Velocidad = '15M/15M';  
+            break;
+        case 3:
+            $Velocidad = '15M/25M';  
+            break;
+        case 2:
+            $Velocidad = '15M/35M';  
+            break;
+        case 8:
+            $Velocidad = '15M/50M';  
+            break;
+    } 
+}
     
     $API = new routeros_api();
     $API->debug = false;

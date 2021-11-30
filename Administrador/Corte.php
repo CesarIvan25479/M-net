@@ -261,7 +261,7 @@ $zonas = explode(",", $router['Zonas']);
                                                 C.CLIENTE=V.CLIENTE INNER JOIN
                                                 partvta P ON V.VENTA=P.VENTA 
                                                 WHERE C.CLIENTE='".$Cliente['CLIENTE']."' AND V.F_EMISION 
-                                                BETWEEN '20210501' AND '$FechaActual' AND ARTICULO='RI' AND V.TIPO_DOC!='PE' order by V.F_EMISION  desc";
+                                                BETWEEN '20210601' AND '$FechaActual' AND ARTICULO='RI' AND V.TIPO_DOC!='PE' order by V.F_EMISION  desc";
                                                 $mostrar2 = sqlsrv_query($ConnC, $consulta2);
                                                 while($pagos = sqlsrv_fetch_array($mostrar2)){
                                                 $meses = $meses.$pagos['comodin'].", ";
@@ -297,7 +297,7 @@ $zonas = explode(",", $router['Zonas']);
                                                 C.CLIENTE=V.CLIENTE INNER JOIN
                                                 partvta P ON V.VENTA=P.VENTA 
                                                 WHERE C.CLIENTE='".$Cliente['CLIENTE']."' AND V.F_EMISION 
-                                                BETWEEN '20210501' AND '$FechaActual' AND ARTICULO='RI' AND V.TIPO_DOC!='PE' order by V.F_EMISION  asc";
+                                                BETWEEN '20210601' AND '$FechaActual' AND ARTICULO='RI' AND V.TIPO_DOC!='PE' order by V.F_EMISION  asc";
                                                 $mostrar2 = sqlsrv_query($Conn, $consulta2);
                                                 while($pagos = sqlsrv_fetch_array($mostrar2)){
                                                 $meses = $meses.$pagos['comodin'].",<br>";

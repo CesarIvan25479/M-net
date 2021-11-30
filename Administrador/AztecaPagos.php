@@ -220,17 +220,17 @@
                                                                 case '1':
                                                                     $datos = $Clientes[0].'||'.
                                                                      $Clientes[2].'||'.
-                                                                     $Clientes[3];
+                                                                     $Clientes[3].'||450';
                                                                     break;
                                                                 case '2':
                                                                     $datos = $Clientes[0].'||'.
                                                                      $Clientes[2].'||'.
-                                                                     $Clientes[3];
+                                                                     $Clientes[3].'||400';
                                                                     break;
                                                                 case '3':
                                                                     $datos = $Clientes[0].'||'.
                                                                      $Clientes[2].'||'.
-                                                                     $Clientes[3];
+                                                                     $Clientes[3].'||350';
                                                                     break;
                                                                 case '4':
                                                                     $datos = $Clientes[0].'||'.
@@ -242,25 +242,30 @@
                                                                      $Clientes[2].'||'.
                                                                      $Clientes[3].'||250';
                                                                     break;
-                                                                case '5':
+                                                                case '6':
                                                                     $datos = $Clientes[0].'||'.
                                                                      $Clientes[2].'||'.
-                                                                     $Clientes[3];
+                                                                     $Clientes[3].'||200';
                                                                     break;
                                                                 case '7':
                                                                     $datos = $Clientes[0].'||'.
                                                                      $Clientes[2].'||'.
-                                                                     $Clientes[3];
+                                                                     $Clientes[3].'||150';
                                                                     break;
                                                                 case '8':
                                                                     $datos = $Clientes[0].'||'.
                                                                      $Clientes[2].'||'.
-                                                                     $Clientes[3];
+                                                                     $Clientes[3].'||500';
                                                                     break;
                                                                 case '9':
                                                                     $datos = $Clientes[0].'||'.
                                                                      $Clientes[2].'||'.
-                                                                     $Clientes[3];
+                                                                     $Clientes[3].'||450';
+                                                                    break;
+                                                                case '10':
+                                                                    $datos = $Clientes[0].'||'.
+                                                                     $Clientes[2].'||'.
+                                                                     $Clientes[3].'||600';
                                                                     break;
                                                             }
                                                             ?>
@@ -299,13 +304,13 @@
                                     <div class="form-group col-md-4">
                                         <select name="mes" class="form-control form-control-sm" id="selectMes">
                                             <option id="mes"><?php echo $Mes;?></option>
-                                            <option>ENE 2021</option>
-                                            <option>FEB 2021</option>
-                                            <option>MAR 2021</option>
-                                            <option>ABR 2021</option>
-                                            <option>MAY 2021</option>
-                                            <option>JUN 2021</option>
-                                            <option>JUL 2021</option>
+                                            <option>ENE 2022</option>
+                                            <option>FEB 2022</option>
+                                            <option>MAR 2022</option>
+                                            <option>ABR 2022</option>
+                                            <option>MAY 2022</option>
+                                            <option>JUN 2022</option>
+                                            <option>JUL 2022</option>
                                             <option>AGO 2021</option>
                                             <option>SEP 2021</option>
                                             <option>OCT 2021</option>
@@ -375,13 +380,13 @@
                             <div class="col-sm-3 my-1">
                                 <select name="meses" class="form-control form-control-sm">
                                     <option><?php echo $Mes;?></option>
-                                    <option>ENE 2021</option>
-                                    <option>FEB 2021</option>
-                                    <option>MAR 2021</option>
-                                    <option>ABR 2021</option>
-                                    <option>MAY 2021</option>
-                                    <option>JUN 2021</option>
-                                    <option>JUL 2021</option>
+                                    <option>ENE 2022</option>
+                                    <option>FEB 2022</option>
+                                    <option>MAR 2022</option>
+                                    <option>ABR 2022</option>
+                                    <option>MAY 2022</option>
+                                    <option>JUN 2022</option>
+                                    <option>JUL 2022</option>
                                     <option>AGO 2021</option>
                                     <option>SEP 2021</option>
                                     <option>OCT 2021</option>

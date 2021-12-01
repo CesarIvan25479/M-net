@@ -17,9 +17,12 @@ PasarFecha.addEventListener('submit', function(e){
     })
 })
 
-var Generar = document.getElementById('Generar');
-Generar.addEventListener('submit', function(e){
-    e.preventDefault();
+
+function agregaform(datos){
+    d=datos.split('||');
+    $('#Cliente').val(d[0]);
+    $('#Nombre').val(d[1]);
+    
     var datos = new FormData(Generar);
     fetch('php/PasDatosRe.php',{
         method: 'POST',
@@ -33,10 +36,4 @@ Generar.addEventListener('submit', function(e){
             $('#tabla').load('php/TablaPagos.php');
         }
     })
-})
-
-function agregaform(datos){
-    d=datos.split('||');
-    $('#Cliente').val(d[0]);
-    $('#Nombre').val(d[1]);
 }

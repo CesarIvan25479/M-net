@@ -224,7 +224,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                                                            while($Clientes = sqlsrv_fetch_array($mostrar)){
                                                                $datos=$Clientes[1]."||".
                                                                $Clientes[0];?>
-                                                           <tr onclick="agregaform('<?php echo $datos ?>')">
+                                                           <tr onclick="agregaform('<?php echo $datos;?>')">
                                                                <td><?php echo $Clientes["CLIENTE"]; ?></td>
                                                                <td><?php echo $Clientes["NOMBRE"]; ?></td>
                                                            </tr>
@@ -266,11 +266,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                                                         </label>
                                                     </div>
                                                 </div>
-                                                
-                                                
-                                                <div class="col-auto my-1">
-                                                    <button type="submit" class="btn btn-link" ><img src="images/masinformacion.png" width="25px"></button>
-                                                </div>
+                                    
                                             </div>
                                         </form>
        

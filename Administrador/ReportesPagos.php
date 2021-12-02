@@ -262,7 +262,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" name="TodasFechas" id="TodasFechas">
                                                         <label class="form-check-label" for="TodasFechas">
-                                                            Todas
+                                                            Todas las Fechas
                                                         </label>
                                                     </div>
                                                 </div>

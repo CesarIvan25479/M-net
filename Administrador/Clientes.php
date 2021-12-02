@@ -223,8 +223,8 @@
                                                                <td><?php echo $Cliente['TELEFONO'];?></td>
                                                                <td><?php echo $Cliente['TIPO'];?></td>
                                                                <td><?php echo $Cliente['ZONA'];?></td>
-                                                               <td><?php echo $Cliente['OBSERV'];?></td>
-                                                               <td><?php echo $Cliente['PRECIO']; ?></td>
+                                                               <td><?php echo $Cliente['PRECIO'];?></td>
+                                                               <td><?php echo $Cliente['OBSERV']; ?></td>
                                                            </tr>
                                                            <?php }?>
                                                        </tbody>

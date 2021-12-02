@@ -33,7 +33,7 @@ if ($Opcion == 'Mostrar'){?>
             <?php
             date_default_timezone_set('America/Mexico_City');
             $FechaActual=date('Ymd');
-            $consulta2 = "SELECT P.OBSERV ,V.NO_REFEREN, C.NOMBRE, F_EMISION, V.IMPORTE, V.TIPO_DOC,
+            $consulta2 = "SELECT P.OBSERV ,V.NO_REFEREN, C.NOMBRE, F_EMISION, P.PRECIO, V.TIPO_DOC,
                          P.ARTICULO,V.comodin FROM clients C 
                          INNER JOIN ventas V ON 
                          C.CLIENTE=V.CLIENTE INNER JOIN
@@ -47,7 +47,7 @@ if ($Opcion == 'Mostrar'){?>
                     <td><?php echo $DatosPagos["comodin"]; ?></td>
                     <td><?php echo $DatosPagos["ARTICULO"]; ?></td>
                     <td><?php echo $DatosPagos["OBSERV"]; ?></td>
-                    <td><?php echo $DatosPagos["IMPORTE"]; ?></td>
+                    <td><?php echo $DatosPagos["PRECIO"]; ?></td>
                 </tr>
                 <?php }?>         
                  

@@ -245,9 +245,10 @@ $PasFecha=$_SESSION['FechaReporte'];
                                             
                                             <div class="form-row align-items-center">
                                                 <input type="hidden" class="form-control" id="Cliente" name="cliente" placeholder="CLIENTE">
-                                                <div class="col-sm-3 my-1">
-                                                    <input type="text" class="form-control form-control-sm" id="Nombre" placeholder="NOMBRE" disabled>
-                                                </div>
+                                                
+                                                <input type="hidden" class="form-control form-control-sm" id="Nombre" placeholder="NOMBRE" disabled>
+                                                
+                                                
                                                 <div class="col-sm-3 my-1">
                                                     <input class="form-control form-control-sm" type="date" id="FechaIn" name="FechaCliente" value="2021-01-01">
                                                 </div>

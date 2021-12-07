@@ -241,11 +241,13 @@ $zonas = explode(",", $router['Zonas']);
                                                 $contador = 0;
                                                 for ($i = 0; $i < count($zonas); $i++){ 
                                                 $consulta = "SELECT DISTINCT clients.CLIENTE ,clients.NOMBRE, clients.PRECIO FROM clients 
-                                                INNER JOIN ventas ON clients.CLIENTE = ventas.CLIENTE WHERE ventas.CLIENTE not in (SELECT DISTINCT CLIENTE FROM ventas WHERE comodin = '$MesActual') AND ZONA='$zonas[$i]' AND clients.TIPO='$tipo'";
+                                                INNER JOIN ventas ON clients.CLIENTE = ventas.CLIENTE WHERE ventas.CLIENTE not in (SELECT DISTINCT CLIENTE FROM ventas WHERE comodin = 'NOV 2021') AND ZONA='$zonas[$i]' AND clients.TIPO='$tipo'";
                                                 $mostrar = sqlsrv_query($ConnC, $consulta);
                                                 while($Cliente = sqlsrv_fetch_array($mostrar)){
                                                 $contador +=1;
-                                                    
+                                                   
+                                                $ARRAY = $API->comm("/queue/simple/enable",
+                                                array("numbers"=>$Cliente['NOMBRE']));   
                                                 $ARRAY = $API->comm("/queue/simple/set",  
                                                 array("numbers"=>$Cliente['NOMBRE'],"max-limit" =>'1K/1K'));
                                                  
@@ -264,7 +266,7 @@ $zonas = explode(",", $router['Zonas']);
                                                 BETWEEN '20210601' AND '$FechaActual' AND ARTICULO='RI' AND V.TIPO_DOC!='PE' order by V.F_EMISION  desc";
                                                 $mostrar2 = sqlsrv_query($ConnC, $consulta2);
                                                 while($pagos = sqlsrv_fetch_array($mostrar2)){
-                                                $meses = $meses.$pagos['comodin'].", ";
+                                                $meses = $meses.$pagos['comodin'].",<br>";
                                                 }
                                                 ?>
                                                 <td><?php echo $meses;?></td>
@@ -281,7 +283,7 @@ $zonas = explode(",", $router['Zonas']);
                                                 $contador = 0;
                                                 for ($i = 0; $i < count($zonas); $i++){ 
                                                 $consulta = "SELECT DISTINCT clients.CLIENTE, clients.NOMBRE, clients.PRECIO FROM clients 
-                                                INNER JOIN ventas ON clients.CLIENTE = ventas.CLIENTE WHERE ventas.CLIENTE not in (SELECT DISTINCT CLIENTE FROM ventas WHERE comodin = '$MesActual') AND ZONA='$zonas[$i]' AND clients.TIPO='$tipo'";
+                                                INNER JOIN ventas ON clients.CLIENTE = ventas.CLIENTE WHERE ventas.CLIENTE not in (SELECT DISTINCT CLIENTE FROM ventas WHERE comodin = 'NOV 2021') AND ZONA='$zonas[$i]' AND clients.TIPO='$tipo'";
                                                 $mostrar = sqlsrv_query($Conn, $consulta);
                                                 while($Cliente = sqlsrv_fetch_array($mostrar)){
                                                 $contador +=1;

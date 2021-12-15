@@ -186,32 +186,18 @@ $PasFecha=$_SESSION['FechaReporte'];
                 <div class="">
                     <div class="clearfix"></div>
                     <div class="row">
-                        <div class="col-md-4 col-sm-12">
+                        
+                        <div class="col-md-12 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Clientes <small></small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                       <div class=row>
-                                           <div class="col-sm-12">
-                                               <div class="card-box table-responsive">
-                                                   <table id="Clientes" class="table table-striped table-bordered" style="width:100%">
-                                                       <thead>
-                                                           <tr>
-                                                               <th>CLIENTE</th>
-                                                               <th>NOMBRE</th>
-                                                           </tr>
-                                                       </thead>
-                                                       <tbody>
-                                                           <?php
+                                    <div class="col-12">
+                                        <form id="Generar">
+                        
+                                            <div class="form-row align-items-center">
+                                                <div class="col-sm-3 my-1">
+                                                <input list="mostrar" class="form-control form-control-sm" id="clien">
+                                                     <datalist id="mostrar">
+                                                         <?php
                                                            set_time_limit(0);
                                                            include '/php/ConexionSQL.php';
                                                            date_default_timezone_set('America/Mexico_City');
@@ -224,30 +210,16 @@ $PasFecha=$_SESSION['FechaReporte'];
                                                            while($Clientes = sqlsrv_fetch_array($mostrar)){
                                                                $datos=$Clientes[1]."||".
                                                                $Clientes[0];?>
-                                                           <tr onclick="agregaform('<?php echo $datos;?>')">
-                                                               <td><?php echo $Clientes["CLIENTE"]; ?></td>
-                                                               <td><?php echo $Clientes["NOMBRE"]; ?></td>
-                                                           </tr>
+                                                         
+                                                            <option value="<?php echo $Clientes["CLIENTE"]; ?>"><?php echo $Clientes["NOMBRE"]; ?></option>
+                                                           
                                                            <?php }?>
-                                                       </tbody>
-                                                   </table>
-                                               </div>
-                                           </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <div class="col-12">
-                                        <form id="Generar">
-                                            
-                                            <div class="form-row align-items-center">
-                                                <input type="hidden" class="form-control" id="Cliente" name="cliente" placeholder="CLIENTE">
-                                                
-                                                <input type="hidden" class="form-control form-control-sm" id="Nombre" placeholder="NOMBRE" disabled>
-                                                
+                                                         
+                                                         <option value="HTML 5"></option>
+                                                         <option value="CSS 3"></option>
+                                                         <option value="Web Standar"></option> 
+                                                    </datalist>
+                                                </div>
                                                 
                                                 <div class="col-sm-3 my-1">
                                                     <input class="form-control form-control-sm" type="date" id="FechaIn" name="FechaCliente" value="2021-01-01">
@@ -341,6 +313,45 @@ $PasFecha=$_SESSION['FechaReporte'];
     <!-- Paginar Tabla-->
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="js/Funciones.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#clien").on('change click', function(){
+                var cliente = $(this).val();
+                var FechaIn = $("#FechaIn").val();
+                var opcion = $("#opcion").val();
+                var TodaFechas = "";
+                if(document.getElementById("TodasFechas").checked){
+                    TodaFechas = "on";
+                }else{
+                    TodaFechas = "off";
+                }
+                console.log(cliente);
+                console.log(FechaIn);
+                console.log(opcion);
+                console.log(TodaFechas);
+                
+                cadena = 'opcion=' + opcion + 
+                        '&FechaCliente='+ FechaIn + 
+                        '&TodasFechas='+ TodaFechas + 
+                        '&cliente='+ cliente;
+                 
+                        
+                $.ajax({
+                    type:"POST",
+                    url:"php/PasDatosRe.php",
+                    data: cadena,
+                    success: function(r){
+                        if(r == true){
+                            $('#tabla').load('php/TablaPagos.php');
+                        }else{
+                            alert('Nada');
+                        }
+            
+                    }
+                });
+            })
+        });
+    </script>
     <script>
      $(document).ready(function() {
 	$('#Clientes').DataTable({

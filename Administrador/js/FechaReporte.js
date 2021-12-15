@@ -18,6 +18,7 @@ PasarFecha.addEventListener('submit', function(e){
 })
 
 
+
 function agregaform(datos){
     d=datos.split('||');
     $('#Cliente').val(d[0]);
@@ -37,3 +38,4 @@ function agregaform(datos){
         }
     })
 }
+

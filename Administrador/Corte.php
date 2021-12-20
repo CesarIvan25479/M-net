@@ -241,7 +241,7 @@ $zonas = explode(",", $router['Zonas']);
                                                 $contador = 0;
                                                 for ($i = 0; $i < count($zonas); $i++){ 
                                                 $consulta = "SELECT DISTINCT clients.CLIENTE ,clients.NOMBRE, clients.PRECIO FROM clients 
-                                                INNER JOIN ventas ON clients.CLIENTE = ventas.CLIENTE WHERE ventas.CLIENTE not in (SELECT DISTINCT CLIENTE FROM ventas WHERE comodin = 'NOV 2021') AND ZONA='$zonas[$i]' AND clients.TIPO='$tipo'";
+                                                INNER JOIN ventas ON clients.CLIENTE = ventas.CLIENTE WHERE ventas.CLIENTE not in (SELECT DISTINCT CLIENTE FROM ventas WHERE comodin = '$MesActual') AND ZONA='$zonas[$i]' AND clients.TIPO='$tipo'";
                                                 $mostrar = sqlsrv_query($ConnC, $consulta);
                                                 while($Cliente = sqlsrv_fetch_array($mostrar)){
                                                 $contador +=1;
@@ -257,7 +257,7 @@ $zonas = explode(",", $router['Zonas']);
                                                 <td><?php echo $Cliente['NOMBRE'];?></td>
                                                 <?php
                                                 $meses='';
-                                                $consulta2 = "SELECT top(5) P.OBSERV ,V.NO_REFEREN, C.NOMBRE, F_EMISION, V.IMPORTE, V.TIPO_DOC,
+                                                $consulta2 = "SELECT top(15) P.OBSERV ,V.NO_REFEREN, C.NOMBRE, F_EMISION, V.IMPORTE, V.TIPO_DOC,
                                                 P.ARTICULO,V.comodin FROM clients C 
                                                 INNER JOIN ventas V ON 
                                                 C.CLIENTE=V.CLIENTE INNER JOIN
@@ -280,10 +280,11 @@ $zonas = explode(",", $router['Zonas']);
                                                 date_default_timezone_set('America/Mexico_City');
                                                 $FechaActual=date('Ymd');
                                                 echo 'No Conectado al Router';
+                                                
                                                 $contador = 0;
                                                 for ($i = 0; $i < count($zonas); $i++){ 
                                                 $consulta = "SELECT DISTINCT clients.CLIENTE, clients.NOMBRE, clients.PRECIO FROM clients 
-                                                INNER JOIN ventas ON clients.CLIENTE = ventas.CLIENTE WHERE ventas.CLIENTE not in (SELECT DISTINCT CLIENTE FROM ventas WHERE comodin = 'NOV 2021') AND ZONA='$zonas[$i]' AND clients.TIPO='$tipo'";
+                                                INNER JOIN ventas ON clients.CLIENTE = ventas.CLIENTE WHERE ventas.CLIENTE not in (SELECT DISTINCT CLIENTE FROM ventas WHERE comodin = '$MesActual') AND ZONA='$zonas[$i]' AND clients.TIPO='$tipo'";
                                                 $mostrar = sqlsrv_query($Conn, $consulta);
                                                 while($Cliente = sqlsrv_fetch_array($mostrar)){
                                                 $contador +=1;
@@ -293,7 +294,7 @@ $zonas = explode(",", $router['Zonas']);
                                                 <td><?php echo $Cliente['NOMBRE'];?></td>
                                                 <?php
                                                 $meses='';
-                                                $consulta2 = "SELECT top(5) P.OBSERV ,V.NO_REFEREN, C.NOMBRE, F_EMISION, V.IMPORTE, V.TIPO_DOC,
+                                                $consulta2 = "SELECT top(15) P.OBSERV ,V.NO_REFEREN, C.NOMBRE, F_EMISION, V.IMPORTE, V.TIPO_DOC,
                                                 P.ARTICULO,V.comodin FROM clients C 
                                                 INNER JOIN ventas V ON 
                                                 C.CLIENTE=V.CLIENTE INNER JOIN

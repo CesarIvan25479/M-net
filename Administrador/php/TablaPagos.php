@@ -129,7 +129,9 @@ if ($Opcion == 'Mostrar'){
                 $API->write("/system/ident/getall",true);
                 $READ = $API->read(false);
                 $ARRAY = $API->comm("/queue/simple/disable",  
-                array("numbers"=>$DatosActivar['NOMBRE']));?>
+                array("numbers"=>$DatosActivar['NOMBRE']));
+                $ARRAY = $API->comm("/queue/simple/set",  
+                array("numbers"=>$DatosActivar['NOMBRE'],"max-limit" =>$Velocidad));?>
                 <div class="alert alert-success  alert-dismissible " role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                     Cliente Activado<strong> Router <?php echo $DatosRouter['Nombre'];?> Plan <?php echo $Velocidad;?> </strong>

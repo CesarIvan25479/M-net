@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon"  type="image/ico" />
 
-    <title>M-net Sistemas</title>
+    <title>Router</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,9 @@
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
     <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-	
+	<!-- Paginar Tabla-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <!-- ********************* -->
     <!-- bootstrap-progressbar -->
     <link href="../vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
@@ -83,7 +85,7 @@
                         </li>
                       <li><a data-toggle="modal" data-target="#IntFecha">Reporte Pagos</a></li>
                       <li><a href="AztecaPagos.php">Pagos Azteca</a></li>
-                      <li><a href="../Administrador/Ordenes.php">Ordenes Instalación</a></li>
+                      <li><a href="#">Estadisticas</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-sitemap"></i> Sistema <span class="fa fa-chevron-down"></span></a>
@@ -178,43 +180,57 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <!-- top tiles -->
-          <div class="row" style="display: inline-block;" >
-          <div class="tile_count">
-              
-            <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+            <section id="web-application">
+                <h2 class="page-header">Ordenes de Instlación</h2>
+                  <div class="row fontawesome-icon-list">
+                      <div class="fa-hover col-md-2 col-sm-4"><a href="../Administrador/OrdenAgregar.php"><i class="fa fa-plus"></i>Agregar</a>
+                    </div>
+                      
+                </div>
+            </section>
+            <br>
+          <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box table-responsive">
+                    <table id="Routers" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>NOMBRE</th>
+                                <th>IP</th>
+                                <th>PuertoAPI</th>
+                                <th>Zonas</th>
+                                <th>TIPO</th>
+                                <th>Acción</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            include '/php/Conexion.php';
+                            $consulta = 'SELECT * FROM router';
+                            $mostrar = mysqli_query($Conexion, $consulta);
+                            while($Router = mysqli_fetch_array($mostrar)){?>
+                            <tr>
+                                <td><?php echo $Router['id'];?></td>
+                                <td><?php echo $Router['Nombre'];?></td>
+                                <td><?php echo $Router['IP'];?></td>
+                                <td><?php echo $Router['PuertoAPI'];?></td>
+                                <td><?php echo $Router['Zonas'];?></td>
+                                <td><?php echo $Router['Tipo'];?></td>
+                                <td>
+                                    
+                                    <button class="btn btn-info btn-sm" onclick="PasRuter('<?php echo $Router['id'];?>')"><a class="fa fa-edit"></a></button>
+                                    
+                                    <button type="button" class="btn btn-info btn-sm"><a class=" fa fa-bar-chart"></a></button>
+                                </td>
+                            </tr>
+                                <?php }?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-              <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-              <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-              <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-              <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-              <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-          </div>
         </div>
-          <!-- /top tiles -->
           <br />        
         </div>
         <!-- /page content -->
@@ -262,46 +278,46 @@
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- Chart.js -->
-    <script src="../vendors/Chart.js/dist/Chart.min.js"></script>
-    <!-- gauge.js -->
-    <script src="../vendors/gauge.js/dist/gauge.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- iCheck -->
-    <script src="../vendors/iCheck/icheck.min.js"></script>
-    <!-- Skycons -->
-    <script src="../vendors/skycons/skycons.js"></script>
-    <!-- Flot -->
-    <script src="../vendors/Flot/jquery.flot.js"></script>
-    <script src="../vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="../vendors/Flot/jquery.flot.time.js"></script>
-    <script src="../vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="../vendors/Flot/jquery.flot.resize.js"></script>
-    <!-- Flot plugins -->
-    <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-    <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-    <script src="../vendors/flot.curvedlines/curvedLines.js"></script>
-    <!-- DateJS -->
-    <script src="../vendors/DateJS/build/date.js"></script>
-    <!-- JQVMap -->
-    <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
-    <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="../vendors/moment/min/moment.min.js"></script>
-    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-      
-      <script src="js/FechaReporte.js"></script>
+      <!-- Paginar Tabla-->
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
       <script src="js/Funciones.js"></script>
-	
+      <script src="js/FechaReporte.js"></script>
+	<script>
+     $(document).ready(function() {
+	$('#Routers').DataTable({
+		"columnDefs": [{
+			"targets": 0
+		}],
+		language: {
+			"sProcessing": "Procesando...",
+			"sLengthMenu": "Mostrar _MENU_",
+			"sZeroRecords": "No se encontraron resultados",
+			"sEmptyTable": "Ningún dato disponible en esta tabla",
+			"sInfo": "Resultados _START_-_END_ de  _TOTAL_",
+			"sInfoEmpty": "Mostrando resultados del 0 al 0 de un total de 0 registros",
+			"sInfoFiltered": "",
+			"sSearch": "Buscar Cliente:",
+			"sLoadingRecords": "Cargando...",
+			"oPaginate": {
+				"sFirst": "Primero",
+				"sLast": "Último",
+				"sNext": "Siguiente",
+				"sPrevious": "Anterior"
+			},   
+		},
+        "lengthMenu": [[25, 50, 100, -1], [25, 50, 100, "Todos"]],
+        scrollY:        '65vh',
+        scrollCollapse: true
+	});
+});
+    </script>
   </body>
 </html>

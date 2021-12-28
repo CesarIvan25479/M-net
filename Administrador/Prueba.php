@@ -9,7 +9,7 @@ $API->debug = false;
 if ($API->connect($ipRouteros , $Username , $Pass, $api_puerto)) {
     $API->write("/system/ident/getall",true);                           $READ = $API->read(false);
     $ARRAY = $API->comm("/system/telnet",
-    array("address"=>'172.18.28.1',"max-limit" =>'1K/1K'));  
+    array("address"=>'172.16.28.2',"user name" =>'edmundom',"user password"=>'mundo16--'));  
     echo "conectado";
 }else{
     echo "No conectado";

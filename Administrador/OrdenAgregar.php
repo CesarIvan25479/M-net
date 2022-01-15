@@ -196,18 +196,41 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <form id="AgregarRouter">
+                                    <form id="AgregarOrden" enctype="multipart/form-data">
                                         <span class="section">Información General</span>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Folio Orden<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control"  name="folio" placeholder="Ej: 00001" type="text" />
+                                                <input class="form-control"  name="folio" placeholder="Ej: 00001" type="number" />
                                             </div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Cliente<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" name="cliente" placeholder="Ej: La cher" type="text" /></div>
+                                                
+                                                <input list="mostrar" class="form-control form-control-sm" placeholder="NOMBRE" name="cliente">
+                                                     <datalist id="mostrar">
+                                                         <?php
+                                                           set_time_limit(0);
+                                                           include '/php/ConexionSQL.php';
+                                                           date_default_timezone_set('America/Mexico_City');
+                                                           $FechaActual=date('Ymd');
+                                                           $PasFecha=$_SESSION['FechaReporte'];  
+                                                           $consulta = "SELECT DISTINCT C.NOMBRE, C.CLIENTE FROM 
+                                                           clients C INNER JOIN ventas V ON C.CLIENTE=V.CLIENTE INNER JOIN partvta P ON V.VENTA=P.VENTA 
+                                                           WHERE V.F_EMISION BETWEEN '$PasFecha' AND '$FechaActual' AND ARTICULO='RI'";
+                                                           $mostrar = sqlsrv_query($Conn , $consulta); 
+                                                           while($Clientes = sqlsrv_fetch_array($mostrar)){
+                                                               $datos=$Clientes[1]."||".
+                                                               $Clientes[0];?>
+                                                         
+                                                            <option value="<?php echo $Clientes["NOMBRE"]; ?>"></option>
+                                                           
+                                                           <?php }?>
+                                                         
+                                                        
+                                                    </datalist>
+                                            </div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha instalación<span class="required">*</span></label>
@@ -218,9 +241,17 @@
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Tipo<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <select name="TipoRouter" class="form-control form-control-sm" id="TipoRouter">
+                                                <select name="tipo" class="form-control form-control-sm" id="TipoRouter">
                                                     <option>Inalámbrico</option>
                                                     <option>Fibra óptica</option>
+                                                </select></div>
+                                        </div>
+                                        <div class="field item form-group">
+                                            <label class="col-form-label col-md-3 col-sm-3  label-align">Instalación<span class="required">*</span></label>
+                                            <div class="col-md-6 col-sm-6">
+                                                <select name="instalacion" class="form-control form-control-sm" id="TipoRouter">
+                                                    <option>Nueva</option>
+                                                    <option>Cambio</option>
                                                 </select></div>
                                         </div>
                                     
@@ -228,7 +259,7 @@
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Imagen Orden<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                             <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                                            <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="imagenord">
                                             <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
                                                 </div>
                                             </div>
@@ -238,7 +269,7 @@
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Imagen Credencial<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
                                             <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFileLang" lang="es">
+                                            <input type="file" class="custom-file-input" id="customFileLang" lang="es" name="imagencre">
                                             <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
                                                 </div>
                                             </div>
@@ -247,8 +278,7 @@
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
                                                     <br>
-                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Guardar </button>
-                                                    <button type="submit" class="btn btn-danger"><i class="fa fa-times"></i> Cancelar </button>
+                                                    <button type='button' class="btn btn-primary" onclick='AgregarOrden()'>Guardar</button>
                                                 </div>
                                             </div>
                                         </div>

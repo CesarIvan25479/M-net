@@ -195,34 +195,34 @@
                     <table id="Routers" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>NOMBRE</th>
-                                <th>IP</th>
-                                <th>PuertoAPI</th>
-                                <th>Zonas</th>
+                                <th>FOLIO</th>
+                                <th>CLIENTE</th>
+                                <th>F.INSTALACIÓN</th>
                                 <th>TIPO</th>
-                                <th>Acción</th>
+                                <th>ORDEN</th>
+                                <th>DOCUMENTOS</th>
                                 
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             include '/php/Conexion.php';
-                            $consulta = 'SELECT * FROM router';
+                            $consulta = 'SELECT * FROM ordenes';
                             $mostrar = mysqli_query($Conexion, $consulta);
-                            while($Router = mysqli_fetch_array($mostrar)){?>
+                            while($orden = mysqli_fetch_array($mostrar)){?>
                             <tr>
-                                <td><?php echo $Router['id'];?></td>
-                                <td><?php echo $Router['Nombre'];?></td>
-                                <td><?php echo $Router['IP'];?></td>
-                                <td><?php echo $Router['PuertoAPI'];?></td>
-                                <td><?php echo $Router['Zonas'];?></td>
-                                <td><?php echo $Router['Tipo'];?></td>
+                                <td><?php echo $orden['Folio'];?></td>
+                                <td><?php echo $orden['Cliente'];?></td>
+                                <td><?php echo $orden['FechaIns'];?></td>
+                                <td><?php echo $orden['Tipo'];?></td>
+                                <td><?php echo $orden['Instalacion'];?></td>
+                                
                                 <td>
                                     
-                                    <button class="btn btn-info btn-sm" onclick="PasRuter('<?php echo $Router['id'];?>')"><a class="fa fa-edit"></a></button>
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')"><a class="fa fa-file-image-o"></a> Orden</button>
                                     
-                                    <button type="button" class="btn btn-info btn-sm"><a class=" fa fa-bar-chart"></a></button>
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')"><a class="fa fa-user"></a> Credencial</button>
+                                    
                                 </td>
                             </tr>
                                 <?php }?>
@@ -231,11 +231,32 @@
                 </div>
             </div>
         </div>
+            
           <br />        
         </div>
         <!-- /page content -->
 
-          
+          <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel">Documentos</h4>
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div id="mostrar">
+            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
           
           <!--Modal Pasar Fecha-->
       <div class="modal fade bs-example-modal-sm" id="IntFecha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

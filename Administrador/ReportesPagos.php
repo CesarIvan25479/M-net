@@ -215,9 +215,6 @@ $PasFecha=$_SESSION['FechaReporte'];
                                                            
                                                            <?php }?>
                                                          
-                                                         <option value="HTML 5"></option>
-                                                         <option value="CSS 3"></option>
-                                                         <option value="Web Standar"></option> 
                                                     </datalist>
                                                 </div>
                                                 

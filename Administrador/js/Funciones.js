@@ -95,3 +95,7 @@ function AgregaRouter() {
           }
     })
 }
+
+function MostrarCliente(){
+    alert("Hola");
+}

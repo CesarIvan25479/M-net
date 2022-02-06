@@ -206,7 +206,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            include '/php/Conexion.php';
+                            include 'php/Conexion.php';
                             $consulta = 'SELECT * FROM ordenes';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($orden = mysqli_fetch_array($mostrar)){?>

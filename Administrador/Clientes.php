@@ -65,11 +65,11 @@
                   </li>
                   <li><a><i class="fa fa-users"></i> Clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="Clientes.php">Clientes MyBusiness</a></li>
+                      <li><a href="javascript:MostrarCliente()">Clientes MyBusiness</a></li>
                       <li><a>Clientes Router<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -92,7 +92,7 @@
                       <li><a>Corte<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -173,68 +173,177 @@
         </div>
         <!-- /top navigation -->
 
-            <!-- page content -->
-            <div class="right_col" role="main">
+        <div class="right_col" role="main">
                 <div class="">
                     <div class="clearfix"></div>
                     <div class="row">
-                        <div class="col-md-12 col-sm-12">
+                        <div class="col-md-5 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Clientes <small>Punto de venta</small></h2>
+                                    <h2>Filtrar<small></small></h2>
+                                <div class="col-sm-4 my-1">
+                                    <input list=zona class="form-control form-control-sm" id="clien" placeholder="Zonas">
+                                        <datalist id="zona">
+                                            <?php
+                                              set_time_limit(0);
+                                              include './php/ConexionSQL.php';  
+                                              $consulta = "SELECT ZONA, Descrip FROM zonas";
+                                              $mostrar = sqlsrv_query($Conn, $consulta); 
+                                              while($zona = sqlsrv_fetch_array($mostrar)){
+                                                  $datos=$zona[1]."||".
+                                                  $zona[0];?>
+                                                  <option value="<?php echo $zona["ZONA"]; ?>"><?php echo $zona["Descrip"]; ?></option>
+                                                           
+                                                    <?php }?>
+                                                         
+                                                </datalist>
+                                        </div>
+                                    
+                                    <div class="col-sm-4 my-1">
+                                    <input list=clasi class="form-control form-control-sm" id="clien" placeholder="Clasificación">
+                                        <datalist id="clasi">
+                                            <?php
+                                              set_time_limit(0);
+                                              include './php/ConexionSQL.php';  
+                                              $consulta = "SELECT Tipo, Descrip FROM tipos";
+                                              $mostrar = sqlsrv_query($Conn, $consulta); 
+                                              while($clasi = sqlsrv_fetch_array($mostrar)){
+                                                  $datos=$clasi[1]."||".
+                                                  $clasi[0];?>
+                                                  <option value="<?php echo $clasi["Tipo"]; ?>"><?php echo $clasi["Descrip"]; ?></option>
+                                                           
+                                                    <?php }?>
+                                                         
+                                                </datalist>
+                                        </div>
+                                    
+                        
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="card-box table-responsive">
+                                                <table id="Clientes" class="table table-striped table-bordered" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>CLIENTE</th>
+                                                            <th>NOMBRE</th>
+                                                            <th>ACCIONES</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        set_time_limit(0);
+                                                        include './php/ConexionSQL.php';
+                                                        $consulta = 'SELECT NOMBRE, CLIENTE FROM clients';
+                                                        $mostrar = sqlsrv_query($Conn, $consulta);
+                                                        while($Clientes = sqlsrv_fetch_array($mostrar)){
+                                                          ?>
+                                                            <tr onclick="AgregarDatos('<?php echo $datos;?>')">
+                                                                <td><?php echo $Clientes['CLIENTE'];?></td>
+                                                                <td><?php echo $Clientes['NOMBRE'];?></td>
+                                                                <td>
+                                                                  <button class="btn btn-success btn-sm"><a class="fa fa-power-off"></a></button>
+                                                                  <button class="btn btn-danger btn-sm"><a class="fa fa-power-off"></a></button>
+                                                                </td>
+                                                            </tr>
+                                                        <?php }?>
+                                                        
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-7 col-sm-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Información</h2>
                                     <ul class="nav navbar-right panel_toolbox">
                                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                         </li>
-                                        
                                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                                         </li>
                                     </ul>
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                       <div class="row">
-                                           <div class="col-sm-12">
-                                               <div class="card-box table-responsive">
-                                                   <table id="Clientes" class="table table-striped table-bordered" style="width:100%">
-                                                       <thead>
-                                                           <tr>
-                                                               <th>CLIENTE</th>
-                                                               <th>NOMBRE</th>
-                                                               <th>CALLE</th>
-                                                               <th>COLONIA</th>
-                                                               <th>TELEFONO</th>
-                                                               <th>T. SERVICIO</th>
-                                                               <th>ZONA</th>
-                                                               <th>PRECIO</th>
-                                                               <th>OBSERVACIONES</th>
-                                                           </tr>
-                                                       </thead>
-                                                       <tbody>
-                                                           <?php
-                                                           include '/php/ConexionSQL.php';
-                                                           $consulta = 'SELECT *FROM clients';
-                                                           $mostrar = sqlsrv_query($Conn, $consulta);
-                                                           while($Cliente = sqlsrv_fetch_array($mostrar)){?>
-                                                           <tr>
-                                                               <td><?php echo $Cliente['CLIENTE'];?></td>
-                                                               <td><?php echo $Cliente['NOMBRE'];?></td>
-                                                               <td><?php echo $Cliente['CALLE'];?></td>
-                                                               <td><?php echo $Cliente['COLONIA'];?></td>
-                                                               <td><?php echo $Cliente['TELEFONO'];?></td>
-                                                               <td><?php echo $Cliente['TIPO'];?></td>
-                                                               <td><?php echo $Cliente['ZONA'];?></td>
-                                                               <td><?php echo $Cliente['PRECIO'];?></td>
-                                                               <td><?php echo $Cliente['OBSERV']; ?></td>
-                                                           </tr>
-                                                           <?php }?>
-                                                       </tbody>
-                                                   </table>
-                                               </div>
-                                           </div>
+                                    <form id="Registrar">
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="">Clave del cliente</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="CLIENTE" id="clave" name="clave" readonly>
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label for="">Nombre del cliente</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="NOMBRE" id="nombre" name="nombre" readonly>
                                     </div>
                                 </div>
+            
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="">Estado</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="ESTADO" id="estado" name="estado" readonly>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="">Código Postal</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="CODIGO POSTAL" id="cp" name="cp" readonly>
+      
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <label for="">Población</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="POBLACIÓN" id="poblacion" name="poblacion" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="">Colonia</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="COLONIA" id="colonia" name="colonia" readonly>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="">Calle</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="CALLE" id="calle" name="calle" readonly>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="">N. Exterior</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="NÚMERO EXTERIOR" id="zona" name="zona" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <label for="">Teléfono</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="TELÉFONO" id="telefono" name="telefono" readonly>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="">Clasificacíon</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="CLASIFICACIÓN" id="clasificacion" name="clasificacion" readonly>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="">Zona</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="ZONA" id="zona" name="zona" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-2">
+                                        <label for="">L. Precio</label>
+                                        <input type="text" class="form-control form-control-sm" placeholder="PRECIO" id="precio" name="precio" readonly>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <label for="">Observaciones</label>
+                                        <textarea  name='observaciones' rows="4" cols="50" style="min-width: 100%"></textarea>
+                                    </div>
+                                </div>
+                                    </form>
+                                </div> 
+                                
                             </div>
+                        
                         </div>
+                        
                     </div>
                 </div>
             </div>

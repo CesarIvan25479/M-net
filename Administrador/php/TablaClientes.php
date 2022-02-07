@@ -17,7 +17,7 @@
                     $zona = $_SESSION['zona'];
                     $clasificacion = $_SESSION['clasificacion'];
                     if($zona=='' && $clasificacion == ''){
-                        $consulta = "SELECT NOMBRE, CLIENTE FROM clients";
+                        $consulta = "SELECT NOMBRE, CLIENTE, TIPO FROM clients";
                         $mostrar = sqlsrv_query($Conn, $consulta);
                         while($Clientes = sqlsrv_fetch_array($mostrar)){
                         ?>
@@ -25,12 +25,17 @@
                                 <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['CLIENTE'];?></td>
                                 <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['NOMBRE'];?></td>
                                 <td>
+                                <?php
+                                if($Clientes['TIPO'] == "BAJA"){ ?>
+                                                                 
+                                <?php }else{?>
                                     <button class="btn btn-success btn-sm" onclick="activar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
                                     <button class="btn btn-danger btn-sm" onclick="desactivar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
+                                <?php }?>
                                 </td>
                             </tr>
                     <?php }}else if($zona != '' && $clasificacion == ''){
-                        $consulta = "SELECT NOMBRE, CLIENTE FROM clients WHERE ZONA='$zona'";
+                        $consulta = "SELECT NOMBRE, CLIENTE, TIPO FROM clients WHERE ZONA='$zona'";
                         $mostrar = sqlsrv_query($Conn, $consulta);
                         while($Clientes = sqlsrv_fetch_array($mostrar)){
                         ?>
@@ -38,12 +43,17 @@
                                 <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['CLIENTE'];?></td>
                                 <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['NOMBRE'];?></td>
                                 <td>
+                                <?php
+                                if($Clientes['TIPO'] == "BAJA"){ ?>
+                                                                 
+                                <?php }else{?>
                                     <button class="btn btn-success btn-sm" onclick="activar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
                                     <button class="btn btn-danger btn-sm" onclick="desactivar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
+                                <?php }?>
                                 </td>
                             </tr>
                         <?php }}else if($zona == '' && $clasificacion != ''){
-                            $consulta = "SELECT NOMBRE, CLIENTE FROM clients WHERE TIPO='$clasificacion'";
+                            $consulta = "SELECT NOMBRE, CLIENTE, TIPO FROM clients WHERE TIPO='$clasificacion'";
                             $mostrar = sqlsrv_query($Conn, $consulta);
                             while($Clientes = sqlsrv_fetch_array($mostrar)){
                             ?>
@@ -51,22 +61,32 @@
                                 <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['CLIENTE'];?></td>
                                 <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['NOMBRE'];?></td>
                                     <td>
+                                    <?php
+                                if($Clientes['TIPO'] == "BAJA"){ ?>
+                                                                 
+                                <?php }else{?>
                                     <button class="btn btn-success btn-sm" onclick="activar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
                                     <button class="btn btn-danger btn-sm" onclick="desactivar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
+                                <?php }?>
                                     </td>
                             </tr>
                             <?php }}else if($zona != '' && $clasificacion != ''){
-                            $consulta = "SELECT NOMBRE, CLIENTE FROM clients WHERE ZONA='$zona' AND TIPO='$clasificacion'";
+                            $consulta = "SELECT NOMBRE, CLIENTE, TIPO FROM clients WHERE ZONA='$zona' AND TIPO='$clasificacion'";
                             $mostrar = sqlsrv_query($Conn, $consulta);
                             while($Clientes = sqlsrv_fetch_array($mostrar)){
                             ?>
                             <tr>
                                 <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['CLIENTE'];?></td>
                                 <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['NOMBRE'];?></td>
-                                    <td>
+                                <td>
+                                    <?php
+                                if($Clientes['TIPO'] == "BAJA"){ ?>
+                                                                 
+                                <?php }else{?>
                                     <button class="btn btn-success btn-sm" onclick="activar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
                                     <button class="btn btn-danger btn-sm" onclick="desactivar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
-                                    </td>
+                                <?php }?>
+                                </td>
                             </tr>
                             <?php }}?>
                                                         

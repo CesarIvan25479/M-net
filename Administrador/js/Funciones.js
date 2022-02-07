@@ -100,7 +100,7 @@ function InfoCliente(clave){
     cadena = 'clave=' + clave;      
     $.ajax({
         type:'POST',
-        url:'php/FiltrarClientes.php',
+        url:'php/InfoCliente.php',
         dataType: "json",
         data:cadena,
         success:function(data){
@@ -115,7 +115,7 @@ function InfoCliente(clave){
                 document.getElementById('numero').value=data.infoclie.NUMERO; 
                 document.getElementById('telefono').value=data.infoclie.TELEFONO;
                 document.getElementById('clasificacion').value=data.infoclie.TIPO;
-                document.getElementById('zona').value=data.infoclie.ZONA;  
+                document.getElementById('zon').value=value=data.infoclie.ZONA;  
                 document.getElementById('precio').value=data.infoclie.PRECIO;
                 document.getElementById('obsr').value=data.infoclie.OBSERV;
             }else{
@@ -134,17 +134,31 @@ function activar(clave){
         data:cadena,
         success:function(data){
             if(data.estado == 'si'){
-                var router = data.infoRouter.Nombre;
-                var plan = data.velocidad;
                 var Cliente = data.infoCliente;
+                if(Cliente ==  "BAJA"){
+                    var mensaje = document.getElementById('menActivar');
+                    var texto = "<div class='alert alert-error  alert-dismissible' role='alert'>"+
+                    "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
+                    " Servicio Cancelado <strong> No se Hizo ningun Cambio</strong></div>";
+                    mensaje.innerHTML = texto;
+                }else{
+                    var router = data.infoRouter.Nombre;
+                    var plan = data.velocidad;
+                    var mensaje = document.getElementById('menActivar');
+                    var texto = "<div class='alert alert-success  alert-dismissible' role='alert'>"+
+                    "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
+                    Cliente+" Activado<strong> Router "+ router +" Plan "+ plan +"</strong></div>";
+                    mensaje.innerHTML = texto;
+                }
+            }else if(data.estado == 'no'){
+                var router = data.infoRouter.Nombre;
                 var mensaje = document.getElementById('menActivar');
-                var texto = "<div class='alert alert-success  alert-dismissible' role='alert'>"+
+                var texto = "<div class='alert alert-error  alert-dismissible' role='alert'>"+
                 "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
-                Cliente+" Activado<strong> Router "+ router +" Plan "+ plan +"</strong></div>";
+                "No se tiene Conexíon al router <strong> Verifica el API de "+ router+"</strong></div>";
                 mensaje.innerHTML = texto;
             }else{
-                $('.user-content').slideUp();
-                alert("User not found...");
+                alert("No Hay Conexion");
             } 
         }
     });   
@@ -158,17 +172,31 @@ function desactivar(clave){
         data:cadena,
         success:function(data){
             if(data.estado == 'si'){
-                var router = data.infoRouter.Nombre;
-                var plan = data.velocidad;
                 var Cliente = data.infoCliente;
+                if(Cliente ==  "BAJA"){
+                    var mensaje = document.getElementById('menActivar');
+                    var texto = "<div class='alert alert-dark  alert-dismissible' role='alert'>"+
+                    "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
+                    " Servicio Cancelado <strong> No se Hizo ningun Cambio</strong></div>";
+                    mensaje.innerHTML = texto;
+                }else{
+                    var router = data.infoRouter.Nombre;
+                    var plan = data.velocidad;
+                    var mensaje = document.getElementById('menActivar');
+                    var texto = "<div class='alert alert-dark  alert-dismissible' role='alert'>"+
+                    "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
+                    Cliente +" Desactivado<strong> Router "+ router +" Plan "+ plan +"</strong></div>";
+                    mensaje.innerHTML = texto;
+                }
+            }else if(data.estado == 'no'){
+                var router = data.infoRouter.Nombre;
                 var mensaje = document.getElementById('menActivar');
                 var texto = "<div class='alert alert-error  alert-dismissible' role='alert'>"+
                 "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
-                Cliente +" Desactivado<strong> Router "+ router +" Plan "+ plan +"</strong></div>";
+                "No se tiene Conexíon al router <strong> Verifica el API de "+ router+"</strong></div>";
                 mensaje.innerHTML = texto;
             }else{
-                $('.user-content').slideUp();
-                alert("User not found...");
+                alert("No Hay Conexion");
             } 
         }
     }); 

@@ -240,7 +240,7 @@
                                                          set_time_limit(0);
                                                          include './php/ConexionSQL.php';
                     
-                                                         $consulta = "SELECT NOMBRE, CLIENTE FROM clients";
+                                                         $consulta = "SELECT NOMBRE, CLIENTE,TIPO FROM clients";
                                                          $mostrar = sqlsrv_query($Conn, $consulta);
                                                          while($Clientes = sqlsrv_fetch_array($mostrar)){
                                                          ?>
@@ -248,9 +248,14 @@
                                                              <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['CLIENTE'];?></td>
                                                              <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['NOMBRE'];?></td>
                                                              <td>
-                                                                 <button class="btn btn-success btn-sm" onclick="activar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
+                                                               <?php
+                                                               if($Clientes['TIPO'] == "BAJA"){ ?>
+                                                                 
+                                                                <?php }else{?>
+                                                                  <button class="btn btn-success btn-sm" onclick="activar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
                                                                  <button class="btn btn-danger btn-sm" onclick="desactivar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
-                                                             </td>
+                                                                  <?php }?>
+                                                            </td>
                                                          </tr>
                                                          <?php }?>
 
@@ -330,7 +335,7 @@
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label for="">Zona</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="ZONA" id="zona" name="zona" readonly>
+                                        <input type="text" class="form-control form-control-sm" placeholder="ZONA" id="zon" name="zon" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">

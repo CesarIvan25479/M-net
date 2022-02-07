@@ -2,7 +2,7 @@
 session_start();
 $PasFecha=$_SESSION['FechaReporte'];
     if($PasFecha ==null || $PasFecha==''){
-        header("location:index.html");
+        header("location:index.php");
             die();
     }
 ?>
@@ -88,7 +88,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                         </li>
                       <li><a data-toggle="modal" data-target="#IntFecha">Reporte Pagos</a></li>
                       <li><a href="AztecaPagos.php">Pagos Azteca</a></li>
-                      <li><a href="#">Estadisticas</a></li>
+                      <li><a href="../Administrador/Ordenes.php">Ordenes Instalación</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-sitemap"></i> Sistema <span class="fa fa-chevron-down"></span></a>
@@ -322,17 +322,10 @@ $PasFecha=$_SESSION['FechaReporte'];
                 }else{
                     TodaFechas = "off";
                 }
-                console.log(cliente);
-                console.log(FechaIn);
-                console.log(opcion);
-                console.log(TodaFechas);
-                
                 cadena = 'opcion=' + opcion + 
                         '&FechaCliente='+ FechaIn + 
                         '&TodasFechas='+ TodaFechas + 
-                        '&cliente='+ cliente;
-                 
-                        
+                        '&cliente='+ cliente;   
                 $.ajax({
                     type:"POST",
                     url:"php/PasDatosRe.php",

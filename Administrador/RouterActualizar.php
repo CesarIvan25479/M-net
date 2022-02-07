@@ -75,7 +75,7 @@ $idRouter = $_SESSION['idrouter'];
                       <li><a>Clientes Router<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -86,7 +86,7 @@ $idRouter = $_SESSION['idrouter'];
                         </li>
                       <li><a data-toggle="modal" data-target="#IntFecha">Reporte Pagos</a></li>
                       <li><a href="AztecaPagos.php">Pagos Azteca</a></li>
-                      <li><a href="#">Estadisticas</a></li>
+                      <li><a href="../Administrador/Ordenes.php">Ordenes Instalación</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-sitemap"></i> Sistema <span class="fa fa-chevron-down"></span></a>
@@ -98,7 +98,7 @@ $idRouter = $_SESSION['idrouter'];
                       <li><a>Corte<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -205,7 +205,7 @@ $idRouter = $_SESSION['idrouter'];
                                 </div>
                                 <div class="x_content">
                                     <?php
-                                    include '/php/Conexion.php';
+                                    include './php/Conexion.php';
                                     $idRouter = $_SESSION['idrouter'];
                                     $consulta = "SELECT * FROM router WHERE id='$idRouter'";
                                     $mostrar = mysqli_query($Conexion, $consulta);

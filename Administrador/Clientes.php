@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,7 +82,7 @@
                         </li>
                       <li><a data-toggle="modal" data-target="#IntFecha">Reporte Pagos</a></li>
                       <li><a href="AztecaPagos.php">Pagos Azteca</a></li>
-                      <li><a href="#">Estadisticas</a></li>
+                      <li><a href="../Administrador/Ordenes.php">Ordenes Instalación</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-sitemap"></i> Sistema <span class="fa fa-chevron-down"></span></a>
@@ -180,9 +182,9 @@
                         <div class="col-md-5 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
-                                    <h2>Filtrar<small></small></h2>
+                                <div class="col-sm-3 my-1"><h5>Filtrar</h5></div>
                                 <div class="col-sm-4 my-1">
-                                    <input list=zona class="form-control form-control-sm" id="clien" placeholder="Zonas">
+                                    <input list=zona class="form-control form-control-sm" id="filtrozona" placeholder="Zonas">
                                         <datalist id="zona">
                                             <?php
                                               set_time_limit(0);
@@ -200,7 +202,7 @@
                                         </div>
                                     
                                     <div class="col-sm-4 my-1">
-                                    <input list=clasi class="form-control form-control-sm" id="clien" placeholder="Clasificación">
+                                    <input list=clasi class="form-control form-control-sm" id="filtroclasi" placeholder="Clasificación">
                                         <datalist id="clasi">
                                             <?php
                                               set_time_limit(0);
@@ -221,40 +223,43 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="card-box table-responsive">
-                                                <table id="Clientes" class="table table-striped table-bordered" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>CLIENTE</th>
-                                                            <th>NOMBRE</th>
-                                                            <th>ACCIONES</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                                                        set_time_limit(0);
-                                                        include './php/ConexionSQL.php';
-                                                        $consulta = 'SELECT NOMBRE, CLIENTE FROM clients';
-                                                        $mostrar = sqlsrv_query($Conn, $consulta);
-                                                        while($Clientes = sqlsrv_fetch_array($mostrar)){
-                                                          ?>
-                                                            <tr onclick="AgregarDatos('<?php echo $datos;?>')">
-                                                                <td><?php echo $Clientes['CLIENTE'];?></td>
-                                                                <td><?php echo $Clientes['NOMBRE'];?></td>
-                                                                <td>
-                                                                  <button class="btn btn-success btn-sm"><a class="fa fa-power-off"></a></button>
-                                                                  <button class="btn btn-danger btn-sm"><a class="fa fa-power-off"></a></button>
-                                                                </td>
-                                                            </tr>
-                                                        <?php }?>
-                                                        
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                    <div id="tablaClientes">
+                                      <div class="row">
+                                         <div class="col-sm-12">
+                                             <div class="card-box table-responsive">
+                                                 <table id="Clientes" class="table table-striped table-bordered" style="width:100%">
+                                                     <thead>
+                                                         <tr>
+                                                             <th>CLIENTE</th>
+                                                             <th>NOMBRE</th>
+                                                             <th>ACCIONES</th>
+                                                         </tr>
+                                                     </thead>
+                                                     <tbody>
+                                                         <?php
+                                                         set_time_limit(0);
+                                                         include './php/ConexionSQL.php';
+                    
+                                                         $consulta = "SELECT NOMBRE, CLIENTE FROM clients";
+                                                         $mostrar = sqlsrv_query($Conn, $consulta);
+                                                         while($Clientes = sqlsrv_fetch_array($mostrar)){
+                                                         ?>
+                                                         <tr>
+                                                             <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['CLIENTE'];?></td>
+                                                             <td onclick="InfoCliente('<?php echo $Clientes['CLIENTE'];?>')"><?php echo $Clientes['NOMBRE'];?></td>
+                                                             <td>
+                                                                 <button class="btn btn-success btn-sm" onclick="activar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
+                                                                 <button class="btn btn-danger btn-sm" onclick="desactivar('<?php echo $Clientes['CLIENTE'];?>')"><a class="fa fa-power-off"></a></button>
+                                                             </td>
+                                                         </tr>
+                                                         <?php }?>
+
+                                                     </tbody>
+                                                 </table>
+                                             </div>
+                                          </div>
                                         </div>
-                                    </div>
+                                    </div>                                 
                                 </div>
                             </div>
                         </div>
@@ -272,10 +277,11 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <form id="Registrar">
+                                    <div id="forminfo">
+                                    <form>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
-                                        <label for="">Clave del cliente</label>
+                                        <label for="">Clave</label>
                                         <input type="text" class="form-control form-control-sm" placeholder="CLIENTE" id="clave" name="clave" readonly>
                                     </div>
                                     <div class="form-group col-md-9">
@@ -285,13 +291,13 @@
                                 </div>
             
                                 <div class="form-row">
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-md-4">
                                         <label for="">Estado</label>
                                         <input type="text" class="form-control form-control-sm" placeholder="ESTADO" id="estado" name="estado" readonly>
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-3">
                                         <label for="">Código Postal</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="CODIGO POSTAL" id="cp" name="cp" readonly>
+                                        <input type="text" class="form-control form-control-sm" placeholder="C. POSTAL" id="cp" name="cp" readonly>
       
                                     </div>
                                     <div class="form-group col-md-5">
@@ -310,7 +316,7 @@
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label for="">N. Exterior</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="NÚMERO EXTERIOR" id="zona" name="zona" readonly>
+                                        <input type="text" class="form-control form-control-sm" placeholder="NÚMERO EXTERIOR" id="numero" name="numero" readonly>
                                     </div>
                                 </div>
                                 <div class="form-row">
@@ -334,14 +340,17 @@
                                     </div>
                                     <div class="form-group col-md-10">
                                         <label for="">Observaciones</label>
-                                        <textarea  name='observaciones' rows="4" cols="50" style="min-width: 100%"></textarea>
+                                        <textarea  name='observaciones' rows="4" cols="50" style="min-width: 100%" readonly id="obsr"></textarea>
                                     </div>
                                 </div>
                                     </form>
+                                    
                                 </div> 
-                                
+                                    
+                                    
+                                </div>
                             </div>
-                        
+                        <div id="menActivar"></div>
                         </div>
                         
                     </div>
@@ -409,6 +418,49 @@
     
     <script src="js/FechaReporte.js"></script>
     <script src="js/Funciones.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#filtrozona").on('change click', function(){
+                var filtrozona = $(this).val();
+                var filtroclasi = $("#filtroclasi").val();
+                cadena = 'zona=' + filtrozona + 
+                        '&clasificacion='+ filtroclasi;      
+		            $.ajax({
+			            type:"POST",
+			            url:"php/FiltrarClientes.php",
+			            data:cadena,
+			            success:function(r){
+				          if(r == true){
+					          $('#tablaClientes').load('php/TablaClientes.php');
+				          }else{
+					          alertify.error("Fallo el servidor :(");
+				          }
+			          }
+		        });
+          })
+        });
+
+        $(document).ready(function(){
+            $("#filtroclasi").on('change click', function(){
+                var filtroclasi = $(this).val();
+                var filtrozona = $("#filtrozona").val();
+                cadena = 'zona=' + filtrozona + 
+                        '&clasificacion='+ filtroclasi;      
+		            $.ajax({
+			            type:"POST",
+			            url:"php/FiltrarClientes.php",
+			            data:cadena,
+			            success:function(r){
+				          if(r == true){
+					          $('#tablaClientes').load('php/TablaClientes.php');
+				          }else{
+					          alertify.error("Fallo el servidor :(");
+				          }
+			          }
+		        });
+          })
+        });
+    </script>
     
     <script>
      $(document).ready(function() {

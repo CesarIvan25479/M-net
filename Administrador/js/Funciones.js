@@ -96,6 +96,80 @@ function AgregaRouter() {
     })
 }
 
-function MostrarCliente(){
-    alert("Hola");
+function InfoCliente(clave){
+    cadena = 'clave=' + clave;      
+    $.ajax({
+        type:'POST',
+        url:'php/FiltrarClientes.php',
+        dataType: "json",
+        data:cadena,
+        success:function(data){
+            if(data.estado == 'si'){
+                document.getElementById('clave').value=data.infoclie.CLIENTE;
+                document.getElementById('nombre').value=data.infoclie.NOMBRE;   
+                document.getElementById('estado').value=data.infoclie.ESTADO;   
+                document.getElementById('cp').value=data.infoclie.CP;   
+                document.getElementById('poblacion').value=data.infoclie.POBLA;   
+                document.getElementById('colonia').value=data.infoclie.COLONIA;   
+                document.getElementById('calle').value=data.infoclie.CALLE;   
+                document.getElementById('numero').value=data.infoclie.NUMERO; 
+                document.getElementById('telefono').value=data.infoclie.TELEFONO;
+                document.getElementById('clasificacion').value=data.infoclie.TIPO;
+                document.getElementById('zona').value=data.infoclie.ZONA;  
+                document.getElementById('precio').value=data.infoclie.PRECIO;
+                document.getElementById('obsr').value=data.infoclie.OBSERV;
+            }else{
+                $('.user-content').slideUp();
+                alert("User not found...");
+            } 
+        }
+    }); 
+}
+function activar(clave){
+    cadena = 'clave=' + clave;      
+    $.ajax({
+        type:'POST',
+        url:'php/ActivarCliente.php',
+        dataType: "json",
+        data:cadena,
+        success:function(data){
+            if(data.estado == 'si'){
+                var router = data.infoRouter.Nombre;
+                var plan = data.velocidad;
+                var Cliente = data.infoCliente;
+                var mensaje = document.getElementById('menActivar');
+                var texto = "<div class='alert alert-success  alert-dismissible' role='alert'>"+
+                "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
+                Cliente+" Activado<strong> Router "+ router +" Plan "+ plan +"</strong></div>";
+                mensaje.innerHTML = texto;
+            }else{
+                $('.user-content').slideUp();
+                alert("User not found...");
+            } 
+        }
+    });   
+}
+function desactivar(clave){
+    cadena = 'clave=' + clave;      
+    $.ajax({
+        type:'POST',
+        url:'php/DesactivarCliente.php',
+        dataType: "json",
+        data:cadena,
+        success:function(data){
+            if(data.estado == 'si'){
+                var router = data.infoRouter.Nombre;
+                var plan = data.velocidad;
+                var Cliente = data.infoCliente;
+                var mensaje = document.getElementById('menActivar');
+                var texto = "<div class='alert alert-error  alert-dismissible' role='alert'>"+
+                "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>×</span></button>"+
+                Cliente +" Desactivado<strong> Router "+ router +" Plan "+ plan +"</strong></div>";
+                mensaje.innerHTML = texto;
+            }else{
+                $('.user-content').slideUp();
+                alert("User not found...");
+            } 
+        }
+    }); 
 }

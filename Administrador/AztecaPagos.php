@@ -80,7 +80,7 @@
                         </li>
                       <li><a data-toggle="modal" data-target="#IntFecha">Reporte Pagos</a></li>
                       <li><a href="AztecaPagos.php">Pagos Azteca</a></li>
-                      <li><a href="#">Estadisticas</a></li>
+                      <li><a href="../Administrador/Ordenes.php">Ordenes Instalación</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-sitemap"></i> Sistema <span class="fa fa-chevron-down"></span></a>

@@ -180,6 +180,7 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
+          <div class="">
             <section id="web-application">
                 <h2 class="page-header">Ordenes de Instlación</h2>
                   <div class="row fontawesome-icon-list">
@@ -188,8 +189,63 @@
                       
                 </div>
             </section>
-            <br>
-          <div class="row">
+            <div class="clearfix"></div>
+        
+                <div class="container cropper">
+                  
+                  <div class="row">
+                    <div class="col-md-9 docs-buttons">
+                      <!-- Show the cropped image in modal -->
+                      <div class="modal fade docs-cropped" id="getCroppedCanvasModal" aria-hidden="true" aria-labelledby="getCroppedCanvasTitle" role="dialog" tabindex="-1">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                              <h4 class="modal-title" id="getCroppedCanvasTitle">Cropped</h4>
+                            </div>
+                            <div class="modal-body"></div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              <a class="btn btn-primary" id="download" href="javascript:void(0);" download="cropped.png">Download</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div><!-- /.modal -->
+
+                    </div><!-- /.docs-buttons -->
+                  </div>
+                </div>
+            
+              
+          </div>
+            <div class="col-md-12 col-sm-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Información</h2>
+                    <div class="col-md-4">
+                        <form class="">
+                          <fieldset>
+                            <div class="control-group ">
+                              <div class="controls">
+                                <div class="input-prepend input-group">
+                                  <span class="add-on input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                                  <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" value="01/01/2022 - 01/25/2022" />
+                                </div>
+                              </div>
+                            </div>
+                          </fieldset>
+                        </form>
+                      </div>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                                    
+                                    
+        <div class="row">
             <div class="col-sm-12">
                 <div class="card-box table-responsive">
                     <table id="Routers" class="table table-striped table-bordered" style="width:100%">
@@ -230,68 +286,20 @@
                     </table>
                 </div>
             </div>
+        </div>       
+                </div>
+            </div>            
         </div>
-            
-          <br />        
         </div>
         <!-- /page content -->
 
-          <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-
-                        <div class="modal-header">
-                          <h4 class="modal-title" id="myModalLabel">Documentos</h4>
-                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div id="mostrar">
-            </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-          
-          <!--Modal Pasar Fecha-->
-      <div class="modal fade bs-example-modal-sm" id="IntFecha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
-      <form id="PasarFecha">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Fecha Inicio</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          
-        <input class="form-control" type="date" name="FechaRep" value="2021-01-01">
-          <div class="mt-3" id='respuesta1'>
-                      <!--Muestra Cliente-->          
-                    </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary">Generar</button>
-      </div>
-    </div>
-          </form>
-  </div>
-</div>
-          
         <!-- footer content -->
         <footer>
-                <div class="pull-right">
-                    M-net Sistemas - Admin WISP 
-                </div>
-                <div class="clearfix"></div>
-            </footer>
+          <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
         <!-- /footer content -->
       </div>
     </div>
@@ -299,17 +307,31 @@
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
-   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <!-- FastClick -->
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="../vendors/moment/min/moment.min.js"></script>
+    <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap-datetimepicker -->    
+    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- Ion.RangeSlider -->
+    <script src="../vendors/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <!-- Bootstrap Colorpicker -->
+    <script src="../vendors/mjolnic-bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <!-- jquery.inputmask -->
+    <script src="../vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+    <!-- jQuery Knob -->
+    <script src="../vendors/jquery-knob/dist/jquery.knob.min.js"></script>
+    <!-- Cropper -->
+    <script src="../vendors/cropper/dist/cropper.min.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
-      <!-- Paginar Tabla-->
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-      <script src="js/Funciones.js"></script>
+    <script src="js/Funciones.js"></script>
       <script src="js/FechaReporte.js"></script>
 	<script>
      $(document).ready(function() {
@@ -340,5 +362,6 @@
 	});
 });
     </script>
+
   </body>
 </html>

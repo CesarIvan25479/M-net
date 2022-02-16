@@ -222,19 +222,25 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Información</h2>
-                    <div class="col-md-4">
-                        <form class="">
-                          <fieldset>
-                            <div class="control-group ">
-                              <div class="controls">
-                                <div class="input-prepend input-group">
-                                  <span class="add-on input-group-addon"><i class="fa fa-calendar-o"></i></span>
-                                  <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" value="01/01/2022 - 01/25/2022" />
-                                </div>
-                              </div>
-                            </div>
-                          </fieldset>
-                        </form>
+                    <div class="col-md-3">
+                        <div class="input-prepend input-group">
+                            <span class="add-on input-group-addon"><i class="fa fa-calendar-o"></i></span>
+                            <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control form-control-sm" value="01/01/2022 - 01/25/2022" />
+                            </div> 
+                      </div>
+                    
+                    <div class="col-md-2">
+                        <select name="tipo" class="form-control form-control-sm" id="filtrotipo">
+                            <option>Inalámbrico</option>
+                            <option>Fibra óptica</option>
+                        </select>
+                      </div>
+                    
+                    <div class="col-md-2">
+                        <select name="instalacion" class="form-control form-control-sm" id="filtroins">
+                            <option>Nueva</option>
+                            <option>Cambio</option>
+                        </select>
                       </div>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
@@ -248,7 +254,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card-box table-responsive">
-                    <table id="Routers" class="table table-striped table-bordered" style="width:100%">
+                    <table id="ordenes" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>FOLIO</th>
@@ -274,7 +280,7 @@
                                 <td><?php echo $orden['Instalacion'];?></td>
                                 
                                 <td>
-                                    
+              
                                     <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')"><a class="fa fa-file-image-o"></a> Orden</button>
                                     
                                     <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')"><a class="fa fa-user"></a> Credencial</button>
@@ -332,10 +338,27 @@
     <script src="../build/js/custom.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <script src="js/Funciones.js"></script>
-      <script src="js/FechaReporte.js"></script>
+    <script src="js/FechaReporte.js"></script>
+    <script>
+      $(document).ready(function(){
+        $("#reservation").on('change', function(){
+          alert("Hola Mundo");
+        })
+
+        $("#filtrotipo").on('change', function(){
+            alert("dfa");
+          })
+        
+
+        $("#filtroins").on('change', function(){
+          alert("dfa");
+        })
+
+      });
+    </script>
 	<script>
      $(document).ready(function() {
-	$('#Routers').DataTable({
+	$('#ordenes').DataTable({
 		"columnDefs": [{
 			"targets": 0
 		}],

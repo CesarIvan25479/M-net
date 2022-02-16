@@ -425,7 +425,7 @@
     <script src="js/Funciones.js"></script>
     <script>
         $(document).ready(function(){
-            $("#filtrozona").on('change click', function(){
+            $("#filtrozona").on('change', function(){
                 var filtrozona = $(this).val();
                 var filtroclasi = $("#filtroclasi").val();
                 cadena = 'zona=' + filtrozona + 
@@ -443,10 +443,8 @@
 			          }
 		        });
           })
-        });
 
-        $(document).ready(function(){
-            $("#filtroclasi").on('change click', function(){
+          $("#filtroclasi").on('change', function(){
                 var filtroclasi = $(this).val();
                 var filtrozona = $("#filtrozona").val();
                 cadena = 'zona=' + filtrozona + 
@@ -464,6 +462,7 @@
 			          }
 		        });
           })
+          
         });
     </script>
     

@@ -33,7 +33,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><img src="images/logo2111.png" width="50px"> <span>M-net Sistemas</span></a>
+                        <a href="index.html" class="site_title"><img src="images/logo2111.png" width="50px"> <span>Comunicaciones</span></a>
                     </div>
 
                     <div class="clearfix"></div>

@@ -236,6 +236,7 @@
                     
                     <div class="col-md-2">
                         <select name="tipo" class="form-control form-control-sm" id="filtrotipo">
+                            <option>--Selecciona--</option>
                             <option>Inalámbrico</option>
                             <option>Fibra óptica</option>
                         </select>
@@ -243,6 +244,7 @@
                     
                     <div class="col-md-2">
                         <select name="instalacion" class="form-control form-control-sm" id="filtroins">
+                            <option>--Selecciona--</option>
                             <option>Nueva</option>
                             <option>Cambio</option>
                         </select>
@@ -287,11 +289,10 @@
                                 <td><?php echo $orden['Instalacion'];?></td>
                                 
                                 <td>
-              
                                     <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')"><a class="fa fa-file-image-o"></a> Orden</button>
-                                    
+                                    <?php if($orden['ImgCredencial'] != ""){ ?>
                                     <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')"><a class="fa fa-user"></a> Credencial</button>
-                                    
+                                    <?php } ?>
                                 </td>
                             </tr>
                                 <?php }?>
@@ -420,12 +421,46 @@
         })
 
         $("#filtrotipo").on('change', function(){
-          $('#tablaOrdenes').load('php/TablaOrdenes.php');
-          })
+          var rangoFecha = $("#reservation").val();
+          var filtroTipo = $("#filtrotipo").val();
+          var filtroins = $("#filtroins").val();
+          var cadena = "rangoFecha=" + rangoFecha +
+                      "&filtroTipo=" + filtroTipo + 
+                      "&filtroIns=" + filtroins;
+          $.ajax({
+            type:"POST",
+            url:"php/FiltrarOrdenes.php",
+            data:cadena,
+            success:function(r){
+              if (r == true){
+                $('#tablaOrdenes').load('php/TablaOrdenes.php');
+              }else{
+                alert("Sin Conexión")
+              }
+            }
+          });
+        })
         
 
         $("#filtroins").on('change', function(){
-          alert("dfa");
+          var rangoFecha = $("#reservation").val();
+          var filtroTipo = $("#filtrotipo").val();
+          var filtroins = $("#filtroins").val();
+          var cadena = "rangoFecha=" + rangoFecha +
+                      "&filtroTipo=" + filtroTipo + 
+                      "&filtroIns=" + filtroins;
+          $.ajax({
+            type:"POST",
+            url:"php/FiltrarOrdenes.php",
+            data:cadena,
+            success:function(r){
+              if (r == true){
+                $('#tablaOrdenes').load('php/TablaOrdenes.php');
+              }else{
+                alert("Sin Conexión")
+              }
+            }
+          });
         })
 
       });

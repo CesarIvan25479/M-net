@@ -24,12 +24,17 @@ $credencial = $folio."credencial.".$ext2;
 
 if($tamanoOr <=1572864 and $tamanoCr <= 1572864){
     
-    if(($tipoOr == "image/jpeg" || $tipoOr == "image/jpg" || $tipoOr == "image/png" || $tipoOr == "image/gif") and ($tipoCr == "image/jpeg" || $tipoCr == "image/jpg" || $tipoCr == "image/png" || $tipoCr == "image/gif")){
+    if(($tipoOr == "image/jpeg" || $tipoOr == "image/jpg" || $tipoOr == "image/png" || $tipoOr == "image/gif") and ($tipoCr == "image/jpeg" || $tipoCr == "image/jpg" || $tipoCr == "image/png" || $tipoCr == "image/gif" || $tipoCr == "")){
     
         
         //movemos la imagen del directorio temporal al directorio escogido
         move_uploaded_file($_FILES['imagenord']['tmp_name'],$Destino.$folio."orden.".$ext);
-        move_uploaded_file($_FILES['imagencre']['tmp_name'],$Destino.$folio."credencial.".$ext2);
+        if($tipoCr == ""){
+            $credencial = "";
+        }else{
+            move_uploaded_file($_FILES['imagencre']['tmp_name'],$Destino.$folio."credencial.".$ext2);
+        }
+        
         include '../php/Conexion.php';
         $consulta = "INSERT INTO ordenes (Folio, Cliente, FechaIns, Tipo, Instalacion, ImgOrden, ImgCredencial) VALUES ('$folio','$cliente','$fechaIn','$tipo','$insta','$orden','$credencial')";
         $agregar = mysqli_query($Conexion, $consulta);

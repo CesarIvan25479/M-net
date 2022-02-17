@@ -21,6 +21,8 @@
                             $fechaFin = $_SESSION["ffinor"];
                             $filtroTipo = $_SESSION["Filorti"];
                             $filtroIns = $_SESSION["Filorin"];
+
+                            if($filtroIns == "--Selecciona--" && $filtroTipo == "--Selecciona--"){
                             $consulta = "SELECT * FROM ordenes WHERE FechaIns BETWEEN '$fechaIni' AND '$fechaFin'";
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($orden = mysqli_fetch_array($mostrar)){?>
@@ -28,7 +30,7 @@
                                 <td><?php echo $orden['Folio'];?></td>
                                 <td><?php echo $orden['Cliente'];?></td>
                                 <td><?php echo $orden['FechaIns'];?></td>
-                                <td><?php echo $orden['Folio'];?></td>
+                                <td><?php echo $orden['Tipo'];?></td>
                                 <td><?php echo $orden['Instalacion'];?></td>
                                 
                                 <td>
@@ -39,7 +41,68 @@
                                     
                                 </td>
                             </tr>
-                                <?php }?>
+                                <?php }
+                            }else if($filtroTipo != "--Selecciona--" && $filtroIns == "--Selecciona--"){
+                            $consulta = "SELECT * FROM ordenes WHERE FechaIns BETWEEN '$fechaIni' AND '$fechaFin' AND Tipo='$filtroTipo'";
+                            $mostrar = mysqli_query($Conexion, $consulta);
+                            while($orden = mysqli_fetch_array($mostrar)){?>
+                            <tr>
+                                <td><?php echo $orden['Folio'];?></td>
+                                <td><?php echo $orden['Cliente'];?></td>
+                                <td><?php echo $orden['FechaIns'];?></td>
+                                <td><?php echo $orden['Tipo'];?></td>
+                                <td><?php echo $orden['Instalacion'];?></td>
+                                
+                                <td>
+              
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')"><a class="fa fa-file-image-o"></a> Orden</button>
+                                    
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')"><a class="fa fa-user"></a> Credencial</button>
+                                    
+                                </td>
+                            </tr>
+                                <?php }
+                            }else if($filtroIns != "--Selecciona--" && $filtroTipo == "--Selecciona--"){
+                                $consulta = "SELECT * FROM ordenes WHERE FechaIns BETWEEN '$fechaIni' AND '$fechaFin' AND Instalacion='$filtroIns'";
+                                $mostrar = mysqli_query($Conexion, $consulta);
+                                while($orden = mysqli_fetch_array($mostrar)){?>
+                                <tr>
+                                    <td><?php echo $orden['Folio'];?></td>
+                                    <td><?php echo $orden['Cliente'];?></td>
+                                    <td><?php echo $orden['FechaIns'];?></td>
+                                    <td><?php echo $orden['Tipo'];?></td>
+                                    <td><?php echo $orden['Instalacion'];?></td>
+                                    
+                                    <td>
+                  
+                                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')"><a class="fa fa-file-image-o"></a> Orden</button>
+                                        
+                                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')"><a class="fa fa-user"></a> Credencial</button>
+                                        
+                                    </td>
+                                </tr>
+                                    <?php }
+                                }else if($filtroIns != "--Selecciona--" && $filtroTipo != "--Selecciona--"){
+                                    $consulta = "SELECT * FROM ordenes WHERE FechaIns BETWEEN '$fechaIni' AND '$fechaFin' AND Instalacion='$filtroIns' AND Tipo='$filtroTipo'";
+                                    $mostrar = mysqli_query($Conexion, $consulta);
+                                    while($orden = mysqli_fetch_array($mostrar)){?>
+                                    <tr>
+                                        <td><?php echo $orden['Folio'];?></td>
+                                        <td><?php echo $orden['Cliente'];?></td>
+                                        <td><?php echo $orden['FechaIns'];?></td>
+                                        <td><?php echo $orden['Tipo'];?></td>
+                                        <td><?php echo $orden['Instalacion'];?></td>
+                                        
+                                        <td>
+                      
+                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')"><a class="fa fa-file-image-o"></a> Orden</button>
+                                            
+                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')"><a class="fa fa-user"></a> Credencial</button>
+                                            
+                                        </td>
+                                    </tr>
+                                        <?php }
+                                    }?>
                         </tbody>
                     </table>
                 </div>

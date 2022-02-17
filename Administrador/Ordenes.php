@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon"  type="image/ico" />
+	  <link rel="icon" href="images/icono.png">
 
-    <title>Router</title>
+    <title>Ordenes</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><img src="images/logo2111.png" width="50px"> <span>M-net Sistemas</span></a>
+              <a href="index.html" class="site_title"><img src="images/logo2111.png" width="50px"> <span>Comunicaciones</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -250,7 +250,7 @@
                 </div>
                 <div class="x_content">
                                     
-                                    
+      <div id="tablaOrdenes">                            
         <div class="row">
             <div class="col-sm-12">
                 <div class="card-box table-responsive">
@@ -292,7 +292,8 @@
                     </table>
                 </div>
             </div>
-        </div>       
+        </div>
+                            </div>       
                 </div>
             </div>            
         </div>

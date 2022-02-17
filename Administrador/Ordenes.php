@@ -225,7 +225,7 @@
                     <div class="col-md-3">
                         <div class="input-prepend input-group">
                             <span class="add-on input-group-addon"><i class="fa fa-calendar-o"></i></span>
-                            <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control form-control-sm" value="01/01/2022 - 01/25/2022" />
+                            <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control form-control-sm" value="02/01/2022 - 02/28/2022" />
                             </div> 
                       </div>
                     
@@ -343,11 +343,28 @@
     <script>
       $(document).ready(function(){
         $("#reservation").on('change', function(){
-          alert("Hola Mundo");
+          var rangoFecha = $("#reservation").val();
+          var filtroTipo = $("#filtrotipo").val();
+          var filtroins = $("#filtroins").val();
+          var cadena = "rangoFecha=" + rangoFecha +
+                      "&filtroTipo=" + filtroTipo + 
+                      "&filtroIns=" + filtroins;
+          $.ajax({
+            type:"POST",
+            url:"php/FiltrarOrdenes.php",
+            data:cadena,
+            success:function(r){
+              if (r == true){
+                $('#tablaOrdenes').load('php/TablaOrdenes.php');
+              }else{
+                alert("Sin Conexión")
+              }
+            }
+          });
         })
 
         $("#filtrotipo").on('change', function(){
-            alert("dfa");
+          $('#tablaOrdenes').load('php/TablaOrdenes.php');
           })
         
 

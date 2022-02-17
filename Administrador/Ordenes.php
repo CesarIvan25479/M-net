@@ -182,7 +182,7 @@
         <div class="right_col" role="main">
           <div class="">
             <section id="web-application">
-                <h2 class="page-header">Ordenes de Instlación</h2>
+                <h2 class="page-header">Ordenes de Instalación</h2>
                   <div class="row fontawesome-icon-list">
                       <div class="fa-hover col-md-2 col-sm-4"><a href="../Administrador/OrdenAgregar.php"><i class="fa fa-plus"></i>Agregar</a>
                     </div>
@@ -225,7 +225,12 @@
                     <div class="col-md-3">
                         <div class="input-prepend input-group">
                             <span class="add-on input-group-addon"><i class="fa fa-calendar-o"></i></span>
-                            <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control form-control-sm" value="02/01/2022 - 02/28/2022" />
+                            <?php
+                            $textinicio = date("m/01/Y");
+                            $textfin = date("m/t/Y");
+                            $textrango = $textinicio." - ".$textfin; 
+                            ?>
+                            <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control form-control-sm" value="<?php echo $textrango; ?>" />
                             </div> 
                       </div>
                     
@@ -269,7 +274,9 @@
                         <tbody>
                             <?php
                             include 'php/Conexion.php';
-                            $consulta = 'SELECT * FROM ordenes';
+                            $inicio = date("Y-m-01");
+                            $fin = date("Y-m-t");
+                            $consulta = "SELECT * FROM ordenes WHERE FechaIns BETWEEN '$inicio' AND '$fin'";
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($orden = mysqli_fetch_array($mostrar)){?>
                             <tr>
@@ -300,13 +307,62 @@
         </div>
         <!-- /page content -->
 
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+
+                        <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel">Documentos</h4>
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div id="mostrar">
+            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                     <!--Modal Pasar Fecha-->
+      <div class="modal fade bs-example-modal-sm" id="IntFecha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+      <form id="PasarFecha">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Fecha Inicio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          
+        <input class="form-control" type="date" name="FechaRep" value="2021-01-01">
+          <div class="mt-3" id='respuesta1'>
+                      <!--Muestra Cliente-->          
+                    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn btn-primary">Generar</button>
+      </div>
+    </div>
+          </form>
+  </div>
+</div>
+
+         <!-- footer content -->
+         <footer>
+                <div class="pull-right">
+                    M-net Sistemas - Admin WISP 
+                </div>
+                <div class="clearfix"></div>
+            </footer>
         <!-- /footer content -->
       </div>
     </div>

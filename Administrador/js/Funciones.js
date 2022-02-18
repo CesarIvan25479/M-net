@@ -210,3 +210,4 @@ function PasEditarOrden(datos){
     sessionStorage.setItem("instalacion",d[4]);
     window.open('OrdenActualizar.php', '_self');
 }
+

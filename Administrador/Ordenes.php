@@ -188,6 +188,7 @@
                     </div>
                       
                 </div>
+                <br>
             </section>
             <div class="clearfix"></div>
         
@@ -221,10 +222,8 @@
             <div class="col-md-12 col-sm-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Información</h2>
                     <div class="col-md-3">
                         <div class="input-prepend input-group">
-                            <span class="add-on input-group-addon"><i class="fa fa-calendar-o"></i></span>
                             <?php
                             $textinicio = date("m/01/Y");
                             $textfin = date("m/t/Y");
@@ -235,11 +234,13 @@
                       </div>
                     
                     <div class="col-md-2">
+                    <div class="input-prepend input-group">
                         <select name="tipo" class="form-control form-control-sm" id="filtrotipo">
                             <option>--Selecciona--</option>
                             <option>Inalámbrico</option>
                             <option>Fibra óptica</option>
                         </select>
+                            </div>
                       </div>
                     
                     <div class="col-md-2">

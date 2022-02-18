@@ -16,13 +16,13 @@ $orden = $folio."orden.".$ext;
 $nombreCr = $_FILES['imagencre']['name'];
 $tipoCr = $_FILES['imagencre']['type'];
 $tamanoCr = $_FILES['imagencre']["size"];
-$ext2 = pathinfo($nombreOr, PATHINFO_EXTENSION);
+$ext2 = pathinfo($nombreCr, PATHINFO_EXTENSION);
 $credencial = $folio."credencial.".$ext2;
 
 
 
 
-if($tamanoOr <=1572864 and $tamanoCr <= 1572864){
+if($tamanoOr <=500000 and $tamanoCr <= 500000){
     
     if(($tipoOr == "image/jpeg" || $tipoOr == "image/jpg" || $tipoOr == "image/png" || $tipoOr == "image/gif") and ($tipoCr == "image/jpeg" || $tipoCr == "image/jpg" || $tipoCr == "image/png" || $tipoCr == "image/gif" || $tipoCr == "")){
     

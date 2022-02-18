@@ -12,7 +12,7 @@
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    <!-- rmnt Awesome -->
     <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
     <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
@@ -203,10 +203,11 @@
                                     </ul>
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home-tab">
-                                            <form id="AgregarOrden" enctype="multipart/form-data">
+                                            <form id="ActualizarOrden" enctype="multipart/form-data">
                                                 <div class="field item form-group">
                                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Folio Orden<span class="required">*</span></label>
                                                     <div class="col-md-6 col-sm-6">
+                                                        <input class="form-control form-control-sm"  name="folio2" id="folio2" type="hidden" />
                                                         <input class="form-control form-control-sm"  name="folio" id="folio" placeholder="Ej: 00001" type="number" />
                                                     </div>
                                                 </div>
@@ -262,8 +263,10 @@
                                                     <div class="form-group">
                                                         <div class="col-md-6 offset-md-3">
                                                             <br>
-                                                            <button type='button' class="btn btn-primary btn-sm" onclick='AgregarOrden()'>Guardar</button>
-                                                            <a href="../Administrador/Ordenes.php"><button type='button' class="btn btn-danger btn-sm" >Cancelar</button></a>
+                                                            <button type='button' class="btn btn-primary btn-sm" onclick='ActualizaOrden()'>Guardar</button>
+                                                            <button type='button' class="btn btn-danger btn-sm" onclick='BorrarOrden()'>Borrar</button>
+                                                            <a href="../Administrador/Ordenes.php"><button type='button' class="btn btn-success btn-sm" >Cancelar</button></a>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>

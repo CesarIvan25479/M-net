@@ -34,11 +34,14 @@
                                 <td><?php echo $orden['Instalacion'];?></td>
                                 
                                 <td>
-              
-                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')"><a class="fa fa-file-image-o"></a> Orden</button>
-                                    
-                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')"><a class="fa fa-user"></a> Credencial</button>
-                                    
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg"  onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')">
+                                    <span data-toggle="tooltip" title="Orden"><a class="fa fa-file-image-o"></a></span></button>
+                                    <?php if($orden['ImgCredencial'] != ""){ ?>
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')">
+                                    <span data-toggle="tooltip" title="Credencial"><a class="fa fa-user"></a></span></button>
+                                    <?php } ?>
+                                    <button class="btn btn-info btn-sm" onclick="PasEditarOrden('<?php echo $orden['Folio'];?>')">
+                                    <span data-toggle="tooltip" title="Editar Cliente"><a class="fa fa-edit"></a></span></button>
                                 </td>
                             </tr>
                                 <?php }
@@ -54,11 +57,14 @@
                                 <td><?php echo $orden['Instalacion'];?></td>
                                 
                                 <td>
-              
-                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')"><a class="fa fa-file-image-o"></a> Orden</button>
-                                    
-                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')"><a class="fa fa-user"></a> Credencial</button>
-                                    
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg"  onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')">
+                                    <span data-toggle="tooltip" title="Orden"><a class="fa fa-file-image-o"></a></span></button>
+                                    <?php if($orden['ImgCredencial'] != ""){ ?>
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')">
+                                    <span data-toggle="tooltip" title="Credencial"><a class="fa fa-user"></a></span></button>
+                                    <?php } ?>
+                                    <button class="btn btn-info btn-sm" onclick="PasEditarOrden('<?php echo $orden['Folio'];?>')">
+                                    <span data-toggle="tooltip" title="Editar Cliente"><a class="fa fa-edit"></a></span></button>
                                 </td>
                             </tr>
                                 <?php }
@@ -74,12 +80,15 @@
                                     <td><?php echo $orden['Instalacion'];?></td>
                                     
                                     <td>
-                  
-                                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')"><a class="fa fa-file-image-o"></a> Orden</button>
-                                        
-                                        <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')"><a class="fa fa-user"></a> Credencial</button>
-                                        
-                                    </td>
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg"  onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')">
+                                    <span data-toggle="tooltip" title="Orden"><a class="fa fa-file-image-o"></a></span></button>
+                                    <?php if($orden['ImgCredencial'] != ""){ ?>
+                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')">
+                                    <span data-toggle="tooltip" title="Credencial"><a class="fa fa-user"></a></span></button>
+                                    <?php } ?>
+                                    <button class="btn btn-info btn-sm" onclick="PasEditarOrden('<?php echo $orden['Folio'];?>')">
+                                    <span data-toggle="tooltip" title="Editar Cliente"><a class="fa fa-edit"></a></span></button>
+                                </td>
                                 </tr>
                                     <?php }
                                 }else if($filtroIns != "--Selecciona--" && $filtroTipo != "--Selecciona--"){
@@ -94,11 +103,14 @@
                                         <td><?php echo $orden['Instalacion'];?></td>
                                         
                                         <td>
-                      
-                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')"><a class="fa fa-file-image-o"></a> Orden</button>
-                                            
-                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')"><a class="fa fa-user"></a> Credencial</button>
-                                            
+                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg"  onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')">
+                                            <span data-toggle="tooltip" title="Orden"><a class="fa fa-file-image-o"></a></span></button>
+                                            <?php if($orden['ImgCredencial'] != ""){ ?>
+                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')">
+                                            <span data-toggle="tooltip" title="Credencial"><a class="fa fa-user"></a></span></button>
+                                            <?php } ?>
+                                            <button class="btn btn-info btn-sm" onclick="PasEditarOrden('<?php echo $orden['Folio'];?>')">
+                                            <span data-toggle="tooltip" title="Editar Cliente"><a class="fa fa-edit"></a></span></button>
                                         </td>
                                     </tr>
                                         <?php }
@@ -138,3 +150,4 @@
 	});
 });
     </script>
+

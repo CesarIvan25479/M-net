@@ -201,3 +201,6 @@ function desactivar(clave){
         }
     }); 
 }
+function PasEditarOrden(datos){
+    alert(datos);
+}

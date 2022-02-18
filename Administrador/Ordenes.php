@@ -280,7 +280,13 @@
                             $fin = date("Y-m-t");
                             $consulta = "SELECT * FROM ordenes WHERE FechaIns BETWEEN '$inicio' AND '$fin'";
                             $mostrar = mysqli_query($Conexion, $consulta);
-                            while($orden = mysqli_fetch_array($mostrar)){?>
+                            while($orden = mysqli_fetch_array($mostrar)){
+                              $datos = $orden['Folio'].'||'.
+                                      $orden['Cliente'].'||'.
+                                      $orden['FechaIns'].'||'.
+                                      $orden['Tipo'].'||'.
+                                      $orden['Instalacion'];
+                              ?>
                             <tr>
                                 <td><?php echo $orden['Folio'];?></td>
                                 <td><?php echo $orden['Cliente'];?></td>
@@ -295,7 +301,7 @@
                                     <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')">
                                     <span data-toggle="tooltip" title="Credencial"><a class="fa fa-user"></a></span></button>
                                     <?php } ?>
-                                    <button class="btn btn-info btn-sm" onclick="PasEditarOrden('<?php echo $orden['Folio'];?>')">
+                                    <button class="btn btn-info btn-sm" onclick="PasEditarOrden('<?php echo $datos;?>')">
                                     <span data-toggle="tooltip" title="Editar Cliente"><a class="fa fa-edit"></a></span></button>
                                 </td>
                             </tr>

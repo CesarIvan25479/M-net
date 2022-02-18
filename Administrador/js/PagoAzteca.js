@@ -194,9 +194,6 @@ function ActualizaDatos(datos){
     $('#idpago').val(d[9]);
     
     
-    
-    console.log(d[1]);
-    
     if(deposito == d[5]){
         $('#dep').text(d[5]);
         $('#tran').text('Transferencia');

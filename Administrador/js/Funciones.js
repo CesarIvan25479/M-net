@@ -202,5 +202,11 @@ function desactivar(clave){
     }); 
 }
 function PasEditarOrden(datos){
-    alert(datos);
+    d=datos.split('||');
+    sessionStorage.setItem("folio",d[0]);
+    sessionStorage.setItem("cliente",d[1]);
+    sessionStorage.setItem("fechains",d[2]);
+    sessionStorage.setItem("Tipo",d[3]);
+    sessionStorage.setItem("instalacion",d[4]);
+    window.open('OrdenActualizar.php', '_self');
 }

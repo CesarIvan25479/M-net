@@ -228,7 +228,10 @@
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha instalación<span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" name="fechains" value="2022-01-01" type="date" /></div>
+                                            <?php
+                                              $fecha = date("Y-m-d");
+                                              ?>
+                                              <input class="form-control" name="fechains" value="<?php echo $fecha; ?>" type="date" /></div>
                                         </div>
                                         
                                         <div class="field item form-group">
@@ -271,7 +274,8 @@
                                             <div class="form-group">
                                                 <div class="col-md-6 offset-md-3">
                                                     <br>
-                                                    <button type='button' class="btn btn-primary" onclick='AgregarOrden()'>Guardar</button>
+                                                    <button type='button' class="btn btn-primary btn-sm" onclick='AgregarOrden()'>Guardar</button>
+                                                    <a href="../Administrador/Ordenes.php"><button type='button' class="btn btn-success btn-sm" >Cancelar</button></a>
                                                 </div>
                                             </div>
                                         </div>

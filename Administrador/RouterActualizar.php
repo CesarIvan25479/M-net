@@ -296,8 +296,11 @@ $idRouter = $_SESSION['idrouter'];
         </button>
       </div>
       <div class="modal-body">
-          
-        <input class="form-control" type="date" name="FechaRep" value="2021-01-01">
+      <?php
+      $FechaActual = date("Y-m-01");
+      $fechaAnterior = date("Y-m-d",strtotime($FechaActual."- 8 month"));
+      ?>
+        <input class="form-control" type="date" name="FechaRep" value="<?php echo $fechaAnterior; ?>">
           <div class="mt-3" id='respuesta1'>
                       <!--Muestra Cliente-->          
                     </div>

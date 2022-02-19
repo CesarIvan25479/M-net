@@ -219,7 +219,11 @@ $PasFecha=$_SESSION['FechaReporte'];
                                                 </div>
                                                 
                                                 <div class="col-sm-3 my-1">
-                                                    <input class="form-control form-control-sm" type="date" id="FechaIn" name="FechaCliente" value="2021-01-01">
+                                                <?php
+                                                  $FechaAct = date("Y-m-01");
+                                                  $fechaAnterior = date("Y-m-d",strtotime($FechaAct."- 8 month"));
+                                                ?>
+                                                    <input class="form-control form-control-sm" type="date" id="FechaIn" name="FechaCliente" value="<?php echo $fechaAnterior; ?>">
                                                 </div>
                                                 
                                                 <div class="col-sm-3 my-1">
@@ -264,8 +268,8 @@ $PasFecha=$_SESSION['FechaReporte'];
         </button>
       </div>
       <div class="modal-body">
-          
-        <input class="form-control" type="date" name="FechaRep" value="2021-01-01">
+         
+        <input class="form-control" type="date" name="FechaRep" value="<?php echo $fechaAnterior; ?>">
           <div class="mt-3" id='respuesta1'>
                       <!--Muestra Cliente-->          
                     </div>

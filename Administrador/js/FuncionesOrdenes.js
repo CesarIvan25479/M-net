@@ -55,6 +55,37 @@ function ActualizaOrden(){
     })
 }
 
+function BorrarOrden(){
+  var folio = document.getElementById("folio").value;
+  var cadena = "folio="+folio;
+  if(confirm("¿Estas Seguro de Borrar el folio "+folio+" ?")){
+    $.ajax({
+      type:"POST",
+      url:"php/BorrarOrden.php",
+      dataType: "json",
+      data:cadena,
+      success:function(data){
+        if(data.estado == "si"){
+          window.open("ordenes.php","_self");
+        }else if(data.estado == "no"){
+          new PNotify({
+            title: "Error",
+            text: "No se Pudo Borrar de la base de datos",
+            type: "error",
+            styling: "bootstrap3"
+          })
+        }
+      }
+    });
+  }else{
+    new PNotify({
+      title: 'Cancelado',
+      text: 'No se Realizo ningun cambio',
+      type: 'error',
+      styling: 'bootstrap3'
+      });
+  }
+}
 
 
 

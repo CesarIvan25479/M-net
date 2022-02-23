@@ -177,113 +177,8 @@
             <div class="right_col" role="main">
                 <div class="">
                     <div class="clearfix"></div>
-                    <div class="row">
-                        <div class="col-md-4 col-sm-12">
-                            <div class="x_panel">
-                                <div class="x_title">
-                                    <h2>Clientes <small>Punto de venta</small></h2>
-                                    <ul class="nav navbar-right panel_toolbox">
-                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                        </li>
-                                        
-                                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                        </li>
-                                    </ul>
-                                    <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="card-box table-responsive">
-                                                <table id="Clientes" class="table table-striped table-bordered" style="width:100%">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>NOMBRE</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                                                        set_time_limit(0);
-                                                        include '/php/ConexionSQL.php';
-                                                        
-                                                        date_default_timezone_set('America/Mexico_City');
-                                                        $fecha=date('Y-m-d');
-                                                        
-                                                        setlocale(LC_ALL,"es_ES");
-                                                        $Mes=strftime("%b %Y");
-                                                        $Mes=str_replace(".","",$Mes);
-                                                        $Mes=strtoupper($Mes);
-                                                        $consulta = 'SELECT NOMBRE, CLIENTE, TELEFONO, COLONIA,PRECIO FROM clients';
-                                                        $mostrar = sqlsrv_query($Conn, $consulta);
-                                                        while($Clientes = sqlsrv_fetch_array($mostrar)){
-                                                            switch ($Clientes['PRECIO']){
-                                                                case '1':
-                                                                    $datos = $Clientes[0].'||'.
-                                                                     $Clientes[2].'||'.
-                                                                     $Clientes[3].'||450';
-                                                                    break;
-                                                                case '2':
-                                                                    $datos = $Clientes[0].'||'.
-                                                                     $Clientes[2].'||'.
-                                                                     $Clientes[3].'||400';
-                                                                    break;
-                                                                case '3':
-                                                                    $datos = $Clientes[0].'||'.
-                                                                     $Clientes[2].'||'.
-                                                                     $Clientes[3].'||350';
-                                                                    break;
-                                                                case '4':
-                                                                    $datos = $Clientes[0].'||'.
-                                                                     $Clientes[2].'||'.
-                                                                     $Clientes[3].'||300';
-                                                                    break;
-                                                                case '5':
-                                                                    $datos = $Clientes[0].'||'.
-                                                                     $Clientes[2].'||'.
-                                                                     $Clientes[3].'||250';
-                                                                    break;
-                                                                case '6':
-                                                                    $datos = $Clientes[0].'||'.
-                                                                     $Clientes[2].'||'.
-                                                                     $Clientes[3].'||200';
-                                                                    break;
-                                                                case '7':
-                                                                    $datos = $Clientes[0].'||'.
-                                                                     $Clientes[2].'||'.
-                                                                     $Clientes[3].'||150';
-                                                                    break;
-                                                                case '8':
-                                                                    $datos = $Clientes[0].'||'.
-                                                                     $Clientes[2].'||'.
-                                                                     $Clientes[3].'||500';
-                                                                    break;
-                                                                case '9':
-                                                                    $datos = $Clientes[0].'||'.
-                                                                     $Clientes[2].'||'.
-                                                                     $Clientes[3].'||450';
-                                                                    break;
-                                                                case '10':
-                                                                    $datos = $Clientes[0].'||'.
-                                                                     $Clientes[2].'||'.
-                                                                     $Clientes[3].'||600';
-                                                                    break;
-                                                            }
-                                                            ?>
-                                                            <tr onclick="AgregarDatos('<?php echo $datos;?>')">
-                                                                <td><?php echo $Clientes['NOMBRE'];?></td>
-                                                        </tr>
-                                                        <?php }?>
-                                                        
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-8 col-sm-12">
+                    <div class="row">    
+                        <div class="col-md-12 col-sm-12">
                             <div class="x_panel">
                                 <div class="x_title">
                                     <h2>Información</h2>
@@ -298,10 +193,35 @@
                                 <div class="x_content">
                                     <form id="Registrar">
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <input type="text" class="form-control form-control-sm" placeholder="Cliente" id="Nombre" name="nombre" readonly>
+                                    <div class="form-group col-md-1">
+                                    <input list="mostrar" class="form-control form-control-sm" id="clien">
+                                      <datalist id="mostrar">
+                                        <?php
+                                        set_time_limit(0);
+                                        include './php/ConexionSQL.php';
+                                        date_default_timezone_set('America/Mexico_City');
+                                        $FechaActual=date('Ymd');             
+                                        setlocale(LC_ALL,"es_ES");
+                                        $Mes=strftime("%b %Y");
+                                        $Mes=str_replace(".","",$Mes);
+                                        $Mes=strtoupper($Mes);
+                                        $PasFecha=$_SESSION['FechaReporte'];  
+                                        $consulta = "SELECT NOMBRE, CLIENTE FROM clients";
+                                        $mostrar3 = sqlsrv_query($Conn , $consulta); 
+                                        while($Clientes = sqlsrv_fetch_array($mostrar3)){
+                                          $datos=$Clientes[1]; ?>
+                                                         
+                                          <option value="<?php echo $Clientes["CLIENTE"]; ?>"><?php echo $Clientes["NOMBRE"]; ?></option>
+                                                           
+                                          <?php }?>
+                                                         
+                                        </datalist>
                                     </div>
+                                    
                                     <div class="form-group col-md-4">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Num. Operación" name="numoperacion" id="NumOpe">
+                                    </div>
+                                    <div class="form-group col-md-2">
                                         <select name="mes" class="form-control form-control-sm" id="selectMes">
                                             <option id="mes"><?php echo $Mes;?></option>
                                             <option>ENE 2022</option>
@@ -322,34 +242,36 @@
                                     <div class="form-group col-md-2">
                                         <input type="number" class="form-control form-control-sm" name="importe" placeholder="$0.00" id='importe' required >
                                     </div>
-                                </div>
-            
-                                <div class="form-row">
+                                    
                                     <div class="form-group col-md-3">
                                         <input type="text" class="form-control form-control-sm" placeholder="Num. Operación" name="numoperacion" id="NumOpe">
                                     </div>
-                                    <div class="form-group col-md-3">
-                                        <input type="date" class="form-control form-control-sm" value="<?php echo $fecha;?>" name="fechapago" id='fechapago'>
-      
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <input type="text" class="form-control form-control-sm" placeholder="Observación" name="observacion" id="observacion">
-                                    </div>
                                 </div>
+            
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-2">
                                         <select name="formapago" id="SelectFormP" class="form-control form-control-sm">
                                             <option id="dep">Deposito</option>
                                             <option id="tran">Transferencia</option>
                                             <option id="efe">Efectivo Almoloya</option>
                                         </select>
                                     </div>
+                                    <div class="form-group col-md-2">
+                                        <input type="date" class="form-control form-control-sm" value="<?php echo $fecha;?>" name="fechapago" id='fechapago'>
+                                    </div>
+                                    
                                     <div class="form-group col-md-4">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Observación" name="observacion" id="observacion">
+                                    </div>
+                                    <div class="form-group col-md-2">
                                         <input type="text" class="form-control form-control-sm" placeholder="Telefono" id="Telefono" name="telefono">
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-md-2">
                                         <input type="text" class="form-control form-control-sm" id="Poblacion" name="poblacion" placeholder="Población" readonly>
                                     </div>
+                                </div>
+                                <div class="form-row">
+                                    
                                 </div>
                                     <div class="form-row">
                                     <div class="form-group col-md-12">
@@ -514,6 +436,38 @@ $(document).ready(function() {
         }else{
             $("#observacion").prop('required',false);
         }
+    })
+    
+    $("#clien").on('change', function(){
+        var cliente = $("#clien").val();
+        var cadena = 'cliente=' + cliente;
+        $.ajax({
+            type:'POST',
+            url:'php/InfoAzteca.php',
+            dataType: "json",
+            data:cadena,
+            success:function(data){
+                if(data.estado == 'si'){
+                    alert("Hola");
+                    document.getElementById('clave').value=data.infoclie.CLIENTE;
+                    document.getElementById('nombre').value=data.infoclie.NOMBRE;   
+                    document.getElementById('estado').value=data.infoclie.ESTADO;   
+                    document.getElementById('cp').value=data.infoclie.CP;   
+                    document.getElementById('poblacion').value=data.infoclie.POBLA;   
+                    document.getElementById('colonia').value=data.infoclie.COLONIA;   
+                    document.getElementById('calle').value=data.infoclie.CALLE;   
+                    document.getElementById('numero').value=data.infoclie.NUMERO; 
+                    document.getElementById('telefono').value=data.infoclie.TELEFONO;
+                    document.getElementById('clasificacion').value=data.infoclie.TIPO;
+                    document.getElementById('zon').value=value=data.infoclie.ZONA;  
+                    document.getElementById('precio').value=data.infoclie.PRECIO;
+                    document.getElementById('obsr').value=data.infoclie.OBSERV;
+                }else{
+                $('.user-content').slideUp();
+                alert("User not found...");
+                } 
+            }
+        }); 
     })
 }); 
         </script>

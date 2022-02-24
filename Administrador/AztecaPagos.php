@@ -199,7 +199,9 @@
                                         <?php
                                         set_time_limit(0);
                                         include './php/ConexionSQL.php';
+                                        include './php/meses.php';
                                         date_default_timezone_set('America/Mexico_City');
+                                        $fecha=date('Y-m-d');
                                         $FechaActual=date('Ymd');             
                                         setlocale(LC_ALL,"es_ES");
                                         $Mes=strftime("%b %Y");
@@ -219,23 +221,24 @@
                                     </div>
                                     
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" placeholder="Num. Operación" name="numoperacion" id="NumOpe">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Cliente" id="Nombre" name="nombre" readonly>
                                     </div>
                                     <div class="form-group col-md-2">
                                         <select name="mes" class="form-control form-control-sm" id="selectMes">
-                                            <option id="mes"><?php echo $Mes;?></option>
-                                            <option>ENE 2022</option>
-                                            <option>FEB 2022</option>
-                                            <option>MAR 2022</option>
-                                            <option>ABR 2022</option>
-                                            <option>MAY 2022</option>
-                                            <option>JUN 2022</option>
-                                            <option>JUL 2022</option>
-                                            <option>AGO 2021</option>
-                                            <option>SEP 2021</option>
-                                            <option>OCT 2021</option>
-                                            <option>NOV 2021</option>
-                                            <option>DIC 2021</option>
+                                            <option id="mes"><?php echo $mes[0];?></option>
+                                            <option><?php echo $mes[1];?></option>
+                                            <option><?php echo $mes[2];?></option>
+                                            <option><?php echo $mes[3];?></option>
+                                            <option><?php echo $mes[4];?></option>
+                                            <option><?php echo $mes[5];?></option>
+                                            <option><?php echo $mes[6];?></option>
+                                            <option><?php echo $mes[7];?></option>
+                                            <option><?php echo $mes[8];?></option>
+                                            <option><?php echo $mes[9];?></option>
+                                            <option><?php echo $mes[10];?></option>
+                                            <option><?php echo $mes[11];?></option>
+                                            <option><?php echo $mes[12];?></option>
+                                            <option><?php echo $mes[13];?></option>
                                             <option >OTRO</option>
                                         </select>
                                     </div>
@@ -440,7 +443,11 @@ $(document).ready(function() {
     
     $("#clien").on('change', function(){
         var cliente = $("#clien").val();
+        var mesactu = $("#mes").val();
         var cadena = 'cliente=' + cliente;
+        $("#NumOpe").removeAttr('readonly');
+        $("#Telefono").removeAttr('readonly');
+        document.getElementById('Registrar').reset();
         $.ajax({
             type:'POST',
             url:'php/InfoAzteca.php',
@@ -448,20 +455,19 @@ $(document).ready(function() {
             data:cadena,
             success:function(data){
                 if(data.estado == 'si'){
-                    alert("Hola");
-                    document.getElementById('clave').value=data.infoclie.CLIENTE;
-                    document.getElementById('nombre').value=data.infoclie.NOMBRE;   
-                    document.getElementById('estado').value=data.infoclie.ESTADO;   
-                    document.getElementById('cp').value=data.infoclie.CP;   
-                    document.getElementById('poblacion').value=data.infoclie.POBLA;   
-                    document.getElementById('colonia').value=data.infoclie.COLONIA;   
-                    document.getElementById('calle').value=data.infoclie.CALLE;   
-                    document.getElementById('numero').value=data.infoclie.NUMERO; 
-                    document.getElementById('telefono').value=data.infoclie.TELEFONO;
-                    document.getElementById('clasificacion').value=data.infoclie.TIPO;
-                    document.getElementById('zon').value=value=data.infoclie.ZONA;  
-                    document.getElementById('precio').value=data.infoclie.PRECIO;
-                    document.getElementById('obsr').value=data.infoclie.OBSERV;
+                    document.getElementById("Nombre").value = data.infoclie.NOMBRE;
+                    document.getElementById("Telefono").value = data.infoclie.TELEFONO;
+                    document.getElementById("Poblacion").value = data.infoclie.COLONIA;
+                    document.getElementById("importe").value = data.precio;
+                    document.getElementById("mes").text = mesactu;
+                    $('#dep').text('Deposito');
+                    $('#tran').text('Transferencia');
+                    $('#efe').text('Efectivo Almoloya');
+
+                    document.getElementById('AtualizarInfo').disabled=true;
+                    document.getElementById('Guardar').disabled=false;
+                    
+                  
                 }else{
                 $('.user-content').slideUp();
                 alert("User not found...");

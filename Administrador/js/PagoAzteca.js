@@ -1,23 +1,6 @@
 var deposito = document.getElementById('dep').value;
 var transfe = document.getElementById('tran').value;
 var efe = document.getElementById('efe').value; 
-function AgregarDatos(datos){
-    $("#NumOpe").removeAttr('readonly');
-        $("#Telefono").removeAttr('readonly');
-    document.getElementById('Registrar').reset();
-    d=datos.split('||');
-    $('#Poblacion').val(d[2]);
-    $('#Telefono').val(d[1]);
-    $('#Nombre').val(d[0]);
-    $('#importe').val(d[3]);
-    $('#dep').text('Deposito');
-    $('#tran').text('Transferencia');
-    $('#efe').text('Efectivo Almoloya');
-    
-    document.getElementById('AtualizarInfo').disabled=true;
-    document.getElementById('Guardar').disabled=false;
-}
-
 var registrar = document.getElementById('Registrar');
 registrar.addEventListener('submit', function(e){
     e.preventDefault();

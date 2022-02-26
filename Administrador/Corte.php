@@ -7,8 +7,8 @@ if ($idRouter == null || $idRouter==''){
     die();
 }
 
-include '/php/MesActual.php';
-include '/php/Conexion.php';
+include './php/MesActual.php';
+include './php/Conexion.php';
 $consulta = "SELECT *FROM router WHERE id='$idRouter'";
 $generar = mysqli_query($Conexion, $consulta);
 $router = mysqli_fetch_array($generar);
@@ -86,7 +86,7 @@ $zonas = explode(",", $router['Zonas']);
                       <li><a>Clientes Router<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -109,7 +109,7 @@ $zonas = explode(",", $router['Zonas']);
                       <li><a>Corte<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -224,7 +224,7 @@ $zonas = explode(",", $router['Zonas']);
                                         <?php
                                             set_time_limit(0);
                                             
-                                            include '/php/Api Mikrotik.php';
+                                            include './php/Api Mikrotik.php';
                                             $ipRouteros=$router['IP']; 
                                             $Username=$router['Usuario'];
                                             $Pass=$router['Pwd'];
@@ -235,7 +235,7 @@ $zonas = explode(",", $router['Zonas']);
                                             if ($API->connect($ipRouteros , $Username , $Pass, $api_puerto)) {
                                                 $API->write("/system/ident/getall",true);
                                                 $READ = $API->read(false);
-                                                include '/php/ConexionSQLC.php';
+                                                include './php/ConexionSQLC.php';
                                                 date_default_timezone_set('America/Mexico_City');
                                                 $FechaActual=date('Ymd');
                                                 $contador = 0;
@@ -276,7 +276,7 @@ $zonas = explode(",", $router['Zonas']);
                                             <?php } 
                                                 }
                                                 }else{
-                                                include '/php/ConexionSQL.php';
+                                                include './php/ConexionSQL.php';
                                                 date_default_timezone_set('America/Mexico_City');
                                                 $FechaActual=date('Ymd');
                                                 echo 'No Conectado al Router';

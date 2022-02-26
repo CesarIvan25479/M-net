@@ -67,7 +67,7 @@
                       <li><a>Clientes Router<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -90,7 +90,7 @@
                       <li><a>Corte<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -205,7 +205,7 @@
                                                      <datalist id="mostrar">
                                                          <?php
                                                            set_time_limit(0);
-                                                           include '/php/ConexionSQL.php';
+                                                           include './php/ConexionSQL.php';
                                                            date_default_timezone_set('America/Mexico_City');
                                                            $FechaActual=date('Ymd');
                                                            $PasFecha=$_SESSION['FechaReporte'];  

@@ -74,7 +74,7 @@
                       <li><a>Clientes Router<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -97,7 +97,7 @@
                       <li><a>Corte<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -276,7 +276,7 @@
                         </thead>
                         <tbody>
                             <?php
-                            include 'php/Conexion.php';
+                            include './php/Conexion.php';
                             $inicio = date("Y-m-01");
                             $fin = date("Y-m-t");
                             $consulta = "SELECT * FROM ordenes WHERE FechaIns BETWEEN '$inicio' AND '$fin'";

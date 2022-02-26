@@ -77,7 +77,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                       <li><a>Clientes Router<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -100,7 +100,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                       <li><a>Corte<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
-                            include '/php/Conexion.php';
+                            include './php/Conexion.php';
                             $consulta = 'SELECT  id, Nombre FROM router';
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($Router = mysqli_fetch_array($mostrar)){?>
@@ -171,7 +171,7 @@ $PasFecha=$_SESSION['FechaReporte'];
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/user.png" alt="">Usuario
+                    <img src="../../../.." alt="afafaf">Usuario
                   </a>
                   
                 </li>
@@ -199,7 +199,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                                                      <datalist id="mostrar">
                                                          <?php
                                                            set_time_limit(0);
-                                                           include '/php/ConexionSQL.php';
+                                                           include './php/ConexionSQL.php';
                                                            date_default_timezone_set('America/Mexico_City');
                                                            $FechaActual=date('Ymd');
                                                            $PasFecha=$_SESSION['FechaReporte'];  

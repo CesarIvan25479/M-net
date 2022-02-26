@@ -1,7 +1,6 @@
 <?php 
 include '../php/Conexion.php';
 $folio = $_POST['folio'];
-$folio2 = $_POST['folio2'];
 $cliente = $_POST['cliente'];
 $fechaIn = $_POST['fechains'];
 $tipo = $_POST['tipo'];
@@ -22,7 +21,7 @@ $credencial = $folio."credencial.".$ext2;
 
 if($nombreOr == "" && $nombreCr == ""){
     $consulta = "UPDATE ordenes SET Folio='$folio', Cliente='$cliente', FechaIns='$fechaIn', Tipo='$tipo',
-    Instalacion='$insta' WHERE Folio='$folio2'";
+    Instalacion='$insta' WHERE Folio='$folio'";
     $agregar = mysqli_query($Conexion, $consulta);
     if($agregar){
         echo json_encode("Agregado");
@@ -33,7 +32,7 @@ if($nombreOr == "" && $nombreCr == ""){
     if($tamanoOr <=500000){
         if($tipoOr == "image/jpeg" || $tipoOr == "image/jpg" || $tipoOr == "image/png" || $tipoOr == "image/gif"){
             $consulta = "UPDATE ordenes SET Folio='$folio', Cliente='$cliente', FechaIns='$fechaIn', Tipo='$tipo',
-            Instalacion='$insta', ImgOrden='$orden' WHERE Folio='$folio2'";
+            Instalacion='$insta', ImgOrden='$orden' WHERE Folio='$folio'";
             move_uploaded_file($_FILES['imagenord']['tmp_name'],$Destino.$folio."orden.".$ext);
             $agregar = mysqli_query($Conexion, $consulta);
             if($agregar){
@@ -53,7 +52,7 @@ if($nombreOr == "" && $nombreCr == ""){
     if($tamanoCr <=500000){
         if($tipoCr == "image/jpeg" || $tipoCr == "image/jpg" || $tipoCr == "image/png" || $tipoCr == "image/gif"){
             $consulta = "UPDATE ordenes SET Folio='$folio', Cliente='$cliente', FechaIns='$fechaIn', Tipo='$tipo',
-            Instalacion='$insta', ImgCredencial='$credencial' WHERE Folio='$folio2'";
+            Instalacion='$insta', ImgCredencial='$credencial' WHERE Folio='$folio'";
             move_uploaded_file($_FILES['imagencre']['tmp_name'],$Destino.$folio."credencial.".$ext2);
             $agregar = mysqli_query($Conexion, $consulta);
             if($agregar){
@@ -71,7 +70,7 @@ if($nombreOr == "" && $nombreCr == ""){
     if($tamanoOr <=500000 and $tamanoCr <= 500000){
         if(($tipoOr == "image/jpeg" || $tipoOr == "image/jpg" || $tipoOr == "image/png" || $tipoOr == "image/gif") and ($tipoCr == "image/jpeg" || $tipoCr == "image/jpg" || $tipoCr == "image/png" || $tipoCr == "image/gif")){
             $consulta = "UPDATE ordenes SET Folio='$folio', Cliente='$cliente', FechaIns='$fechaIn', Tipo='$tipo',
-            Instalacion='$insta', ImgCredencial='$credencial', ImgOrden='$orden' WHERE Folio='$folio2'";
+            Instalacion='$insta', ImgCredencial='$credencial', ImgOrden='$orden' WHERE Folio='$folio'";
             move_uploaded_file($_FILES['imagencre']['tmp_name'],$Destino.$folio."credencial.".$ext2);
             move_uploaded_file($_FILES['imagenord']['tmp_name'],$Destino.$folio."orden.".$ext);
             $agregar = mysqli_query($Conexion, $consulta);

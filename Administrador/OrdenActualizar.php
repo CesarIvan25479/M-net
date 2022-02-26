@@ -207,8 +207,7 @@
                                                 <div class="field item form-group">
                                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Folio Orden<span class="required">*</span></label>
                                                     <div class="col-md-6 col-sm-6">
-                                                        <input class="form-control form-control-sm"  name="folio2" id="folio2" type="hidden" />
-                                                        <input class="form-control form-control-sm"  name="folio" id="folio" placeholder="Ej: 00001" type="number" />
+                                                        <input class="form-control form-control-sm"  name="folio" id="folio" placeholder="Ej: 00001" type="number" readonly/>
                                                     </div>
                                                 </div>
                                                 <div class="field item form-group">

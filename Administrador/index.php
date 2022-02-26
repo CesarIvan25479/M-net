@@ -178,44 +178,192 @@
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <!-- top tiles -->
-          <div class="row" style="display: inline-block;" >
-          <div class="tile_count">
-              
-            <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-              <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-              <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-              <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-              <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-              <div class="col-md-2 col-sm-6  tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Clientes Cholula</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
-            </div>
-          </div>
+          <div class="row">
+    <div class="col-sm-12">
+        <div class="page-header">
+            <!-- page title -->
+
+            <h1 class="pull-left">
+                <i class="fa fa-tachometer"></i>
+                <span>Dashboard</span>
+            </h1>
         </div>
-          <!-- /top tiles -->
-          <br />        
+    </div>
+</div>
+
+<div class="row">    
+ 
+    <!--Pagos-->
+    
+        <div class="col-sm-4">
+            <div class="box">
+                <div class="box-header">
+                    <div class="title">
+                        <div class="fa fa-dollar"></div>
+                        Pagos Internet
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-12">
+                        
+                            <a class="links-panel" href="/facturas/?pagos_fecha=26/02/2022&estado=pagada">
+                                <div class="box-content box-statistic">
+                                    <h3 class="title text-success">$0.00
+                                        </h3>
+                                    <small>Hoy - 0 pagos</small>
+                                   
+                                    <div class="text-success fa fa-money align-right"></div>
+                                </div>
+                            </a>
+                        
+                        
+                            <a class="links-panel" href="/pagos/">
+                                <div class="box-content box-statistic">
+                                    <h3 class="title text-warning">$705.00 </h3>
+                                    <small>Pendiente - 3 pagos</small>
+                                    <div class="text-warning fa fa-clock-o align-right"></div>
+                                </div>
+                            </a>
+                        
+                        
+                            <a class="links-panel" href="/facturas/?pagos_fecha=02/2022&estado=pagada">
+                                <div class="box-content box-statistic">
+                                    <h3 class="title text-primary">$0.00 </h3>
+                                    <small>Febrero - 0 pagos</small>
+                                    <div class="text-primary fa fa-calendar align-right"></div>
+                                </div>
+                            </a>
+                        
+                    </div>
+                </div>                    
+            </div>
+        </div>
+    
+    <!--Clientes-->
+    
+        <div class="col-sm-4">
+            <div class="box">
+                <div class="box-header">
+                    <div class="title">
+                        <i class="fa fa-users"></i> Clientes
+                    </div>
+                </div>
+                <div class="row">
+                    
+                    <div class="col-sm-12">
+                        <!--a class="links-panel" href="/clientes2/?clientes_fecha=2022-02-26"-->
+                        <a class="links-panel" href="/clientes/?clientes_fecha=26/02/2022">
+                            <div class="box-content box-statistic text-right">
+                                <h3 class="title text-success">0</h3>
+                                <small>Hoy</small>
+                                <div class="text-success fa fa-user-plus align-left"></div>
+                            </div>
+                        </a>
+                        
+                        <!--a class="links-panel" href="/clientes2/?clientes_fecha=2022-02"-->
+                        <a class="links-panel" href="/clientes/?clientes_fecha=02/2022">
+                            <div class="box-content box-statistic text-right">
+                                <h3 class="title text-primary">0</h3>
+                                <small>Febrero</small>
+                                <div class="text-primary fa fa-calendar align-left"></div>
+                            </div>
+                        </a>
+                        <a class="links-panel" href="/clientes/">
+                            <div class="box-content box-statistic text-right">
+                                <h3 class="title text-primary">1</h3>
+                                <small>Total</small>
+                                <div class="text-primary fa fa-users align-left"></div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    
+
+    <!--Tickets-->
+    
+        <div class="col-sm-4">
+            <div class="box">
+                <div class="box-header">
+                    <div class="title">
+                        <i class="fa fa-support"></i> Tickets 
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div class="col-sm-12">
+                        <a class="links-panel" href="/tickets/?tickets_fecha=26/02/2022">
+                            <div class="box-content box-statistic">
+                                <h3 class="title text-error">0</h3>
+                                <small>Hoy</small>
+                                <div class="text-error fa fa-plus-circle align-right"></div>
+                            </div>
+                        </a>
+                        <a class="links-panel" href="/tickets/?estado=nuevo">
+                            <div class="box-content box-statistic">
+                                <h3 class="title text-warning">0</h3>
+                                <small>Pendientes</small>
+                                <div class="text-warning fa fa-clock-o align-right"></div>
+                            </div>
+                        </a>
+                        <a class="links-panel" href="/tickets/?tickets_fecha=02/2022">
+                            <div class="box-content box-statistic">
+                                <h3 class="title text-success">0</h3>
+                                <small>Febrero</small>
+                                <div class="text-success fa fa-calendar align-right"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+    <!--Trafico-->
+    
+        <div class="col-sm-12">
+            <div class="box" style="margin-bottom:0 !important">
+                <div class="box-header">
+                    <div class="title">
+                        <i class="fa fa-refresh"></i> Trafico 
+                    </div>                    
+                </div>                
+            </div>
+            <small style="font-size: 10px;">Última actualización: 26/02/2022 15:20</small>
+        </div>
+        
+        <div class="col-sm-4">
+            <div class="box">                
+                <div class="row">
+                    <a class="links-panel" href="/trafico/">
+                        <div class="col-sm-12">
+                            <div class="box-content box-statistic text-right">
+                                <h3 class="title text-primary">0 GiB</h3>
+                                <small>Total Descarga</small>
+                                <div class="text-primary fa fa-cloud-download align-left"></div>
+                            </div>                        
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="box">                
+                <div class="row">
+                    <a class="links-panel" href="/trafico/">
+                        <div class="col-sm-12">
+                            <div class="box-content box-statistic text-right">
+                                <h3 class="title text-primary">0 GiB</h3>
+                                <small>Total Subida</small>
+                                <div class="text-warning fa fa-cloud-upload align-left"></div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>        
         </div>
         <!-- /page content -->
 

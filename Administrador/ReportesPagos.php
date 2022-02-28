@@ -41,7 +41,7 @@ $PasFecha=$_SESSION['FechaReporte'];
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><img src="images/logo2111.png" width="50px"> <span>Comunicaciones</span></a>
+                        <a href="index.php" class="site_title"><img src="images/logo2111.png" width="50px"> <span>Comunicaciones</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -73,7 +73,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                   </li>
                   <li><a><i class="fa fa-users"></i> Clientes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="Clientes.php">Clientes MyBusiness</a></li>
+                      <li><a href="Clientes.php">Lista de Clientes</a></li>
                       <li><a>Clientes Router<span class="fa fa-chevron-down"></span></a>
                           <ul class="nav child_menu">
                             <?php 
@@ -87,10 +87,16 @@ $PasFecha=$_SESSION['FechaReporte'];
                           </ul>
                         </li>
                       <li><a data-toggle="modal" data-target="#IntFecha">Reporte Pagos</a></li>
-                      <li><a href="AztecaPagos.php">Pagos Azteca</a></li>
                       <li><a href="../Administrador/Ordenes.php">Ordenes Instalación</a></li>
                     </ul>
                   </li>
+                    <li><a><i class="fa fa-line-chart"></i> Cobranza<span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="AztecaPagos.php">Pagos</a></li>
+                            <li><a href="Facturas.php">Facturas</a></li>
+                        </ul>
+                    </li>
+                    
                   <li><a><i class="fa fa-sitemap"></i> Sistema <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="Routers.php">Router</a></li>
@@ -109,10 +115,6 @@ $PasFecha=$_SESSION['FechaReporte'];
                             <?php }?>
                           </ul>
                         </li>
-                      <li><a href="#">Proximamente...</a></li>
-                      <li><a href="#">Proximamente...</a></li>
-                      <li><a href="#">Proximamente...</a></li>
-                      <li><a href="#">Proximamente...</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-wifi"></i> HotsPot <span class="fa fa-chevron-down"></span></a>

@@ -211,3 +211,19 @@ function PasEditarOrden(datos){
     window.open('OrdenActualizar.php', '_self');
 }
 
+function ClienteFactura(){
+    var cliente = document.getElementById("clientefac").value;
+    var nombre = document.getElementById("nombrefac").value;
+    var correo = document.getElementById("correofac").value;
+    var corre2 = document.getElementById("correofac2").value;
+    var formpago = document.getElementById("formpago").value;
+    var cfdi = document.getElementById("cfdi").value;
+    var pago = document.getElementById("pago").value;
+    alert(cliente);
+    alert(nombre);
+    alert(correo);
+    alert(corre2);
+    alert(formpago);
+    alert(cfdi);
+    alert(pago);
+}

@@ -27,6 +27,10 @@
     <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
     <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- PNotify -->
+    <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
+    <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
@@ -188,7 +192,7 @@
                   <a class="btn btn-app" data-toggle="modal" data-target="#RegCliente">
                     <i class="fa fa-plus"></i> Agregar
                   </a>
-                  <a class="btn btn-app">
+                  <a class="btn btn-app" data-toggle="modal" data-target="#RegFactura">
                     <i class="fa fa-file-code-o"></i> Factura
                   </a>
                 <br>
@@ -378,6 +382,7 @@
           <div class="modal fade bs-example-modal-lg" id="RegCliente" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                   <div class="modal-content">
+                    <form id="formAgregarCliente">
                       <div class="modal-header">
                           <h4 class="modal-title" id="myModalLabel">Registrar Cliente</h4>
                           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
@@ -386,7 +391,7 @@
                       <div class="modal-body">
                           <div class="field item form-group">
                               <label class="col-form-label col-md-3 col-sm-3  label-align">Cliente Factura<span class="required">*</span></label>
-                              <div class="col-md-2 col-sm-6">
+                              <div class="col-md-6 col-sm-6">
                                   <input class="form-control"  name="clientefac" id="clientefac" placeholder="Ej: 00001" type="number" />
                               </div>
                           </div>
@@ -436,7 +441,101 @@
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                           <button type="button" class="btn btn-primary" onclick="ClienteFactura()">Guardar</button>
                       </div>
-
+                    </form>
+                  </div>
+              </div>
+          </div>
+          
+           <!--Modal Registro  Factura-->
+          <div class="modal fade bs-example-modal-lg" id="RegFactura" tabindex="-1" role="dialog" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <form id="formAgregarFactura">
+                      <div class="modal-header">
+                          <h4 class="modal-title" id="myModalLabel">Registrar Factura</h4>
+                          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                          <div class="field item form-group">
+                              <label class="col-form-label col-md-3 col-sm-3  label-align">Cliente Factura<span class="required">*</span></label>
+                              <div class="col-md-6 col-sm-6">
+                                  <input list="MostrarCliF" class="form-control" id="clieFac">
+                                  <datalist id="MostrarCliF">
+                                        <?php
+                                        include "./php/Conexion.php";
+                                        include './php/meses.php';
+                                        $consulta = "SELECT Cliente,Nombre FROM facturascliente";
+                                        $resultado = mysqli_query($Conexion, $consulta);
+                                        while($infoCliente = mysqli_fetch_array($resultado)){ ?>
+                                        <option value="<?php echo $infoCliente["Cliente"]; ?>"><?php echo $infoCliente["Nombre"]; ?></option>
+                                        <?php } ?>
+                                    
+                                  </datalist>
+                              </div>  
+                          </div>
+                          <div class="field item form-group">
+                              <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha Registro <span class="required">*</span></label>
+                              <div class="col-md-6 col-sm-6">
+                                  <select name="mespa" id="mespa" class="form-control">
+                                      <option id="mes"><?php echo $mes[0];?></option>
+                                      <option><?php echo $mes[1];?></option>
+                                      <option><?php echo $mes[2];?></option>
+                                      <option><?php echo $mes[3];?></option>
+                                      <option><?php echo $mes[4];?></option>
+                                      <option><?php echo $mes[5];?></option>
+                                      <option><?php echo $mes[6];?></option>
+                                      <option><?php echo $mes[7];?></option>
+                                      <option><?php echo $mes[8];?></option>
+                                      <option><?php echo $mes[9];?></option>
+                                      <option><?php echo $mes[10];?></option>
+                                      <option><?php echo $mes[11];?></option>
+                                      <option><?php echo $mes[12];?></option>
+                                      <option><?php echo $mes[13];?></option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="field item form-group">
+                              <label class="col-form-label col-md-3 col-sm-3  label-align">Fecha Registro <span class="required">*</span></label>
+                              <div class="col-md-6 col-sm-6">
+                                  <input type="date"  class="form-control" name="fechreg" id="fechreg">
+                              </div>
+                          </div>
+                          <div class="field item form-group">
+                              <label class="col-form-label col-md-3 col-sm-3  label-align">Forma de pago <span class="required">*</span></label>
+                              <div class="col-md-6 col-sm-6">
+                                  <select name="formpago" class="form-control" id="formpago">
+                                      <option>EFECTIVO</option>
+                                      <option>TRANSFERENCIA</option>
+                                      <option>CHEQUE NOMINATIVO</option>
+                                      <option>POR DEFINIR</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="field item form-group">
+                              <label class="col-form-label col-md-3 col-sm-3  label-align">CFDI <span class="required">*</span></label>
+                              <div class="col-md-6 col-sm-6">
+                                  <input class="form-control"  name="" id="cfdi" id="cfdi" placeholder="" type="text" value="GASTOS EN GENERAL" />
+                              </div>
+                          </div>
+                          <div class="field item form-group">
+                              <label class="col-form-label col-md-3 col-sm-3  label-align">Importe Sin IVA <span class="required">*</span></label>
+                              <div class="col-md-6 col-sm-6">
+                                  <input class="form-control"  name="siniva" id="siniva" placeholder="" type="number" readonly />
+                              </div>
+                          </div>
+                          <div class="field item form-group">
+                              <label class="col-form-label col-md-3 col-sm-3  label-align">Importe Con IVA <span class="required">*</span></label>
+                              <div class="col-md-6 col-sm-6">
+                                  <input class="form-control"  name="coniva" id="coniva" placeholder="" type="number" />
+                              </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                          <button type="button" class="btn btn-primary" onclick="ClienteFactura()">Guardar</button>
+                      </div>
+                    </form>
                   </div>
               </div>
           </div>
@@ -474,6 +573,10 @@
     <script src="../vendors/jquery-knob/dist/jquery.knob.min.js"></script>
     <!-- Cropper -->
     <script src="../vendors/cropper/dist/cropper.min.js"></script>
+    <!-- PNotify -->
+    <script src="../vendors/pnotify/dist/pnotify.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.buttons.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.nonblock.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
@@ -544,6 +647,37 @@
               }
             }
           });
+        })
+
+        $("#coniva").on('keyup',function(){
+          var pago = $("#coniva").val();
+          var siniva = (pago / 1.16);
+          siniva = siniva.toFixed(2)
+          $("#siniva").val(siniva);
+        })
+
+        $("#clieFac").on('change',function(){
+          var cliente = $(this).val();
+          cadena = "cliente=" + cliente;
+          $.ajax({
+            type:'POST',
+            url:'php/DatosFactura.php',
+            dataType: "json",
+            data:cadena,
+            success:function(data){
+              if(data.estado == 'si'){
+                var ForPago = data.infofac.FormaPago;
+                var cfdi = data.infofac.CFDI;
+                var importe = data.infofac.Importe;
+                alert(ForPago);
+                alert(cfdi);
+                alert(importe);
+              }else{
+                
+              }
+            }
+
+          })
         })
 
       });

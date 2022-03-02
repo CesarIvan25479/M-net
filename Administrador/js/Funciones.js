@@ -215,15 +215,48 @@ function ClienteFactura(){
     var cliente = document.getElementById("clientefac").value;
     var nombre = document.getElementById("nombrefac").value;
     var correo = document.getElementById("correofac").value;
-    var corre2 = document.getElementById("correofac2").value;
+    var correo2 = document.getElementById("correofac2").value;
     var formpago = document.getElementById("formpago").value;
     var cfdi = document.getElementById("cfdi").value;
     var pago = document.getElementById("pago").value;
-    alert(cliente);
-    alert(nombre);
-    alert(correo);
-    alert(corre2);
-    alert(formpago);
-    alert(cfdi);
-    alert(pago);
+    cadena = "cliente=" + cliente +
+            "&nombre=" + nombre +
+            "&correo=" + correo +
+            "&correo2=" + correo2 +
+            "&formpago=" + formpago + 
+            "&cfdi=" + cfdi + 
+            "&pago=" + pago;
+    $.ajax({
+        type:"POST",
+        url: "php/ClienteFactura.php",
+        data:cadena,
+        success:function(r){
+            if (r == true){
+                new PNotify({
+                    title: 'Registrado',
+                    text: 'La informacion ha sido guardada',
+                    type: 'success',
+                    styling: 'bootstrap3'
+                    });
+                $('#RegCliente').modal('hide');
+                document.getElementById("formAgregarCliente").reset();
+            }else if (r == "llena"){
+                new PNotify({
+                    title: 'Verifica los datos',
+                    text: 'Favor de llenar todos los campos',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                    });
+            }else{
+                new PNotify({
+                    title: 'Verifica la información',
+                    text: 'No se pudo guardar la información',
+                    type: 'error',
+                    styling: 'bootstrap3'
+                    });
+            }
+        }
+
+    });
+
 }

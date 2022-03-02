@@ -117,7 +117,7 @@ function Aztualizar(){
             styling: 'bootstrap3'
             });
         }else if(data==='Actualizado'){
-           document.getElementById('Registrar').reset();
+            document.getElementById('Registrar').reset();
             document.getElementById('AtualizarInfo').disabled=true;
            new PNotify({
             title: 'Actualizado',

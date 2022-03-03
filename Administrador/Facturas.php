@@ -272,48 +272,59 @@
                     <table id="ordenes" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
-                                <th>FOLIO</th>
-                                <th>CLIENTE</th>
-                                <th>F.INSTALACIÓN</th>
-                                <th>TIPO</th>
-                                <th>ORDEN</th>
-                                <th>DOCUMENTOS</th>
-                                
+                                <th>NOMBRE</th>
+                                <th>FORMA PAGO</th>
+                                <th>CFDI</th>
+                                <th>IMPOR.</th>
+                                <th>PAGO TOTAL</th>
+                                <th>F. PAGO</th> 
+                                <th>MES</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             include './php/Conexion.php';
-                            $inicio = date("Y-m-01");
-                            $fin = date("Y-m-t");
-                            $consulta = "SELECT * FROM ordenes WHERE FechaIns BETWEEN '$inicio' AND '$fin'";
+                            $consulta = "SELECT FC.Nombre, FC.FormaPago,
+                            FC.CFDI, FC.Importe, F.FormaPagoG, F.CFDIG, F.ImporteG, F.FechaPago, F.Mes, F.Total, F.Estado
+                            FROM facturascliente FC LEFT JOIN facturas F ON FC.Cliente = F.Cliente";
                             $mostrar = mysqli_query($Conexion, $consulta);
-                            while($orden = mysqli_fetch_array($mostrar)){
-                              $datos = $orden['Folio'].'||'.
-                                      $orden['Cliente'].'||'.
-                                      $orden['FechaIns'].'||'.
-                                      $orden['Tipo'].'||'.
-                                      $orden['Instalacion'];
+                            while($infoFactura = mysqli_fetch_array($mostrar)){
+                              var_dump($infoFactura);
+                              if ($infoFactura["Estado"] == "Generada"){
+                                ?>
+                                <tr class="table-danger">
+                                    <td><?php echo $infoFactura['Nombre'];?></td>
+                                    <td><?php echo $infoFactura['FormaPagoG'];?></td>
+                                    <td><?php echo $infoFactura['CFDIG'];?></td>
+                                    <td><?php echo $infoFactura['ImporteG'];?></td>
+                                    <td><?php echo $infoFactura['Total'];?></td> 
+                                    <td><?php echo $infoFactura['FechaPago'];?></td>
+                                    <td><?php echo $infoFactura['Mes'];?></td>             
+                                </tr>
+                            <?php }else if($infoFactura["Estado"] == "Pagada"){
                               ?>
-                            <tr>
-                                <td><?php echo $orden['Folio'];?></td>
-                                <td><?php echo $orden['Cliente'];?></td>
-                                <td><?php echo $orden['FechaIns'];?></td>
-                                <td><?php echo $orden['Tipo'];?></td>
-                                <td><?php echo $orden['Instalacion'];?></td>
-                                
-                                <td>
-                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg"  onclick="mostrarImagen('<?php echo $orden['ImgOrden'];?>')">
-                                    <span data-toggle="tooltip" title="Orden"><a class="fa fa-file-image-o"></a></span></button>
-                                    <?php if($orden['ImgCredencial'] != ""){ ?>
-                                    <button class="btn btn-info btn-sm" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="mostrarImagen('<?php echo $orden['ImgCredencial'];?>')">
-                                    <span data-toggle="tooltip" title="Credencial"><a class="fa fa-user"></a></span></button>
-                                    <?php } ?>
-                                    <button class="btn btn-info btn-sm" onclick="PasEditarOrden('<?php echo $datos;?>')">
-                                    <span data-toggle="tooltip" title="Editar Cliente"><a class="fa fa-edit"></a></span></button>
-                                </td>
-                            </tr>
-                                <?php }?>
+                                <tr class="table-success">
+                                    <td><?php echo $infoFactura['Nombre'];?></td>
+                                    <td><?php echo $infoFactura['FormaPagoG'];?></td>
+                                    <td><?php echo $infoFactura['CFDIG'];?></td>
+                                    <td><?php echo $infoFactura['ImporteG'];?></td>
+                                    <td><?php echo $infoFactura['Total'];?></td> 
+                                    <td><?php echo $infoFactura['FechaPago'];?></td>
+                                    <td><?php echo $infoFactura['Mes'];?></td>             
+                                </tr>
+                            <?php }else{
+                            ?>
+                                <tr>
+                                    <td><?php echo $infoFactura['Nombre'];?></td>
+                                    <td><?php echo $infoFactura['FormaPago'];?></td>
+                                    <td><?php echo $infoFactura['CFDI'];?></td>
+                                    <td><?php echo $infoFactura['ImporteG'];?></td>
+                                    <td><?php echo $infoFactura['Importe'];?></td> 
+                                    <td><?php echo $infoFactura['FechaPago'];?></td>
+                                    <td><?php echo $infoFactura['Mes'];?></td>
+                                                 
+                                </tr>
+                                <?php } }?>
                         </tbody>
                     </table>
                 </div>

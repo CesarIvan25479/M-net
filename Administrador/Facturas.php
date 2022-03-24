@@ -284,12 +284,14 @@
                         <tbody>
                             <?php
                             include './php/Conexion.php';
+                            include './php/meses.php';
+                            $filtroMes = $mes[13];
                             $consulta = "SELECT FC.Nombre, FC.FormaPago,
                             FC.CFDI, FC.Importe, F.FormaPagoG, F.CFDIG, F.ImporteG, F.FechaPago, F.Mes, F.Total, F.Estado
-                            FROM facturascliente FC LEFT JOIN facturas F ON FC.Cliente = F.Cliente";
+                            FROM facturascliente FC LEFT JOIN facturas F ON FC.Cliente = F.Cliente WHERE Mes='ene 2021' or Mes is null";
                             $mostrar = mysqli_query($Conexion, $consulta);
                             while($infoFactura = mysqli_fetch_array($mostrar)){
-                              var_dump($infoFactura);
+                              
                               if ($infoFactura["Estado"] == "Generada"){
                                 ?>
                                 <tr class="table-danger">
@@ -474,8 +476,6 @@
                                   <input list="MostrarCliF" class="form-control" id="clieFac">
                                   <datalist id="MostrarCliF">
                                         <?php
-                                        include "./php/Conexion.php";
-                                        include './php/meses.php';
                                         $consulta = "SELECT Cliente,Nombre FROM facturascliente";
                                         $resultado = mysqli_query($Conexion, $consulta);
                                         while($infoCliente = mysqli_fetch_array($resultado)){ ?>

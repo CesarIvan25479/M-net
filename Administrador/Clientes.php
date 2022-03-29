@@ -241,7 +241,6 @@
                                                          <?php
                                                          set_time_limit(0);
                                                          include './php/ConexionSQL.php';
-                    
                                                          $consulta = "SELECT NOMBRE, CLIENTE,TIPO FROM clients";
                                                          $mostrar = sqlsrv_query($Conn, $consulta);
                                                          while($Clientes = sqlsrv_fetch_array($mostrar)){

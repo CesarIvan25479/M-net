@@ -193,8 +193,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                             <div class="x_panel">
                                 <div class="x_title">
                                     <div class="col-12">
-                                        <form id="Generar">
-                        
+                                        
                                             <div class="form-row align-items-center">
                                                 <div class="col-sm-3 my-1">
                                                 <input list="mostrar" class="form-control form-control-sm" id="clien">
@@ -244,12 +243,13 @@ $PasFecha=$_SESSION['FechaReporte'];
                                                 </div>
                                     
                                             </div>
-                                        </form>
        
                                     </div>
                                 </div>
                                 <div class="x_content">
-                                    <div id="tabla"></div>
+                                    <div id="tablaInternet"></div>
+                                    <div id="tablaTelefono"></div>
+                                    <div id="tablaCamara"></div>
                                 </div>
                             </div>
                         </div>
@@ -337,12 +337,23 @@ $PasFecha=$_SESSION['FechaReporte'];
                     url:"php/PasDatosRe.php",
                     data: cadena,
                     success: function(r){
-                        if(r == true){
-                            $('#tabla').load('php/TablaPagos.php');
-                        }else{
-                            alert('Nada');
+                        if(r == 1){
+                            $('#tablaInternet').load('php/TablaInternet.php');
+                            $('#tablaTelefono').empty();
+                            $('#tablaCamara').empty();
+                        }else if(r == 2){
+                            $('#tablaInternet').load('php/TablaInternet.php');
+                            $('#tablaTelefono').load('php/TablaTelefono.php');
+                            $('#tablaCamara').load('php/TablaCamara.php');
+                        }else if(r == 3){
+                            $('#tablaInternet').load('php/TablaInternet.php');
+                            $('#tablaCamara').load('php/TablaCamara.php');
+                            $('#tablaTelefono').empty();
+                        }else if(r == 4){
+                            $('#tablaInternet').load('php/TablaInternet.php');
+                            $('#tablaTelefono').load('php/TablaTelefono.php');
+                            $('#tablaCamara').empty();
                         }
-            
                     }
                 });
             })

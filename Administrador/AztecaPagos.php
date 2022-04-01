@@ -306,20 +306,21 @@
                             </div>
                             <div class="col-sm-3 my-1">
                                 <select name="meses" class="form-control form-control-sm">
-                                    <option><?php echo $Mes;?></option>
-                                    <option>ENE 2022</option>
-                                    <option>FEB 2022</option>
-                                    <option>MAR 2022</option>
-                                    <option>ABR 2022</option>
-                                    <option>MAY 2022</option>
-                                    <option>JUN 2022</option>
-                                    <option>JUL 2022</option>
-                                    <option>AGO 2021</option>
-                                    <option>SEP 2021</option>
-                                    <option>OCT 2021</option>
-                                    <option>NOV 2021</option>
-                                    <option>DIC 2021</option>
-                                    <option>OTRO</option>
+                                    <option id="mes"><?php echo $mes[0];?></option>
+                                    <option><?php echo $mes[1];?></option>
+                                    <option><?php echo $mes[2];?></option>
+                                    <option><?php echo $mes[3];?></option>
+                                    <option><?php echo $mes[4];?></option>
+                                    <option><?php echo $mes[5];?></option>
+                                    <option><?php echo $mes[6];?></option>
+                                    <option><?php echo $mes[7];?></option>
+                                    <option><?php echo $mes[8];?></option>
+                                    <option><?php echo $mes[9];?></option>
+                                    <option><?php echo $mes[10];?></option>
+                                    <option><?php echo $mes[11];?></option>
+                                    <option><?php echo $mes[12];?></option>
+                                    <option><?php echo $mes[13];?></option>
+                                    <option >OTRO</option>
                                 </select>
     
                             </div>

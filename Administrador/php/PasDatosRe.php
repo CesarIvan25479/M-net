@@ -7,6 +7,7 @@ $Fecha=$_POST['FechaCliente'];
 $Opcion = $_POST['opcion'];
 $Fecha=str_replace("-","",$Fecha);
 $TodaFechas = $_POST["TodasFechas"];
+$data = array();
 if ($TodaFechas === "on" ){
     if($_POST['TodasFechas'] != ""){
         $todas="20150101";
@@ -42,18 +43,22 @@ $servicioTel = substr_count($Servicios["DATOS"], "TEL");
 $servicioCam = substr_count($Servicios["DATOS"], "CAM");
 
 if($Servicios["DATOS"] == "" || $Servicios["DATOS"] == null ){
-    echo 1;
+    $data['estado']= 'Inter';
+    echo json_encode($data);
 }else{
     if($servicioTel != 0 && $servicioCam != 0){
         $_SESSION['servicioTel']=$servicioTel;
         $_SESSION['servicioCam']=$servicioCam;
-        echo 2;
+        $data['estado']= 'Todos';
+        echo json_encode($data);
     }else if($servicioTel == 0 && $servicioCam != 0){
         $_SESSION['servicioCam']=$servicioCam;
-        echo 3;
+        $data['estado']= 'Camara';
+        echo json_encode($data);
     }else if($servicioTel != 0 && $servicioCam == 0){
         $_SESSION['servicioTel']=$servicioTel;
-        echo 4;
+        $data['estado']= 'Telef';
+        echo json_encode($data);
     }
 }
 

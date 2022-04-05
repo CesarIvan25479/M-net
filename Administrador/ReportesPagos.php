@@ -335,21 +335,22 @@ $PasFecha=$_SESSION['FechaReporte'];
                 $.ajax({
                     type:"POST",
                     url:"php/PasDatosRe.php",
-                    data: cadena,
-                    success: function(r){
-                        if(r == 1){
+                    dataType: "json",
+                    data: cadena,                    
+                    success: function(data){
+                        if(data.estado == "Inter"){
                             $('#tablaInternet').load('php/TablaInternet.php');
                             $('#tablaTelefono').empty();
                             $('#tablaCamara').empty();
-                        }else if(r == 2){
+                        }else if(data.estado == "Todos"){
                             $('#tablaInternet').load('php/TablaInternet.php');
                             $('#tablaTelefono').load('php/TablaTelefono.php');
                             $('#tablaCamara').load('php/TablaCamara.php');
-                        }else if(r == 3){
+                        }else if(data.estado == "Camara"){
                             $('#tablaInternet').load('php/TablaInternet.php');
                             $('#tablaCamara').load('php/TablaCamara.php');
                             $('#tablaTelefono').empty();
-                        }else if(r == 4){
+                        }else if(data.estado == "Telef"){
                             $('#tablaInternet').load('php/TablaInternet.php');
                             $('#tablaTelefono').load('php/TablaTelefono.php');
                             $('#tablaCamara').empty();

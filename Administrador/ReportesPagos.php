@@ -193,7 +193,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                             <div class="x_panel">
                                 <div class="x_title">
                                     <div class="col-12">
-                                        
+                                        <form id="Generar">
                                             <div class="form-row align-items-center">
                                                 <div class="col-sm-3 my-1">
                                                 <input list="mostrar" class="form-control form-control-sm" id="clien">
@@ -243,6 +243,7 @@ $PasFecha=$_SESSION['FechaReporte'];
                                                 </div>
                                     
                                             </div>
+                                        </form>
        
                                     </div>
                                 </div>

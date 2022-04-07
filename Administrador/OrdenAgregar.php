@@ -211,9 +211,7 @@
                                                            date_default_timezone_set('America/Mexico_City');
                                                            $FechaActual=date('Ymd');
                                                            $PasFecha=$_SESSION['FechaReporte'];  
-                                                           $consulta = "SELECT DISTINCT C.NOMBRE, C.CLIENTE FROM 
-                                                           clients C INNER JOIN ventas V ON C.CLIENTE=V.CLIENTE INNER JOIN partvta P ON V.VENTA=P.VENTA 
-                                                           WHERE V.F_EMISION BETWEEN '$PasFecha' AND '$FechaActual' AND ARTICULO='RI'";
+                                                           $consulta = "SELECT NOMBRE FROM clients WHERE TIPO!='BAJA'";
                                                            $mostrar = sqlsrv_query($Conn , $consulta); 
                                                            while($Clientes = sqlsrv_fetch_array($mostrar)){
                                                                $datos=$Clientes[1]."||".

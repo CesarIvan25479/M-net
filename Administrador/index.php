@@ -237,7 +237,7 @@
       <div class="modal-body">
       <?php
       $FechaActual = date("Y-m-01");
-      $fechaAnterior = date("Y-m-d",strtotime($FechaActual."- 8 month"));
+      $fechaAnterior = date("Y-m-d",strtotime($FechaActual."- 5 month"));
       ?>
         <input class="form-control" type="date" name="FechaRep" value="<?php echo $fechaAnterior; ?>">
           <div class="mt-3" id='respuesta1'>
